@@ -240,6 +240,79 @@ p{margin:0}
 .stage .cover3d{width:min(290px,66vw);cursor:grab}
 .cover-name{position:absolute;left:12%;right:12%;top:79%;text-align:center;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--nc,#F3D98F);text-shadow:0 1px 0 rgba(0,0,0,.4);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .pillars{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+/* business directory */
+.biz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.biz{position:relative;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;overflow:hidden;transition:border-color .25s,transform .25s}
+.biz:hover{border-color:var(--navy-600)}
+.biz-top{display:flex;gap:12px;align-items:center;min-width:0}
+.biz-av{width:48px;height:48px;border-radius:14px;background:var(--navy-900);color:var(--gold);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:1.3rem;flex:none}
+.biz-top div{min-width:0}
+.biz h3{font-size:1.15rem;font-weight:700;line-height:1.15;overflow-wrap:anywhere}
+.biz .where{font-size:.84rem;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.biz p{font-size:.9rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.biz-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.biz-acts .btn{padding:10px 12px;font-size:.88rem}
+.biz-more{font-size:.86rem;font-weight:600;color:var(--navy-900);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.biz-more:hover{color:var(--gold-ink)}
+.vbadge{display:inline-flex;gap:4px;align-items:center;font-size:.7rem;font-weight:600;border-radius:999px;padding:3px 9px;background:#FBF3DC;border:1px solid #EAD49A;color:var(--gold-ink)}
+.catbadge{font-size:.7rem;font-weight:600;border-radius:999px;padding:3px 9px;background:var(--paper);border:1px solid var(--line);color:var(--ink);display:inline-flex;gap:4px;align-items:center}
+.list-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.list-head h2{font-size:1.5rem;font-weight:750}
+.filter-on{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:.92rem}
+.filter-on button{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:5px 12px;font-weight:600;cursor:pointer;font-size:.82rem}
+.empty-biz{background:var(--white);border:1.5px dashed var(--line);border-radius:18px;padding:24px;display:grid;gap:12px;justify-items:start}
+.empty-biz h3{font-size:1.25rem}
+.empty-biz p{color:var(--muted);font-size:.93rem}
+.prof{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start}
+@media (max-width:900px){.prof{grid-template-columns:1fr}}
+.prof-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:14px}
+.prof-card h2{font-size:1.25rem;font-weight:700}
+.prof-card .pre{white-space:pre-wrap;color:var(--ink);font-size:.98rem}
+.contact-card{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px)}
+@media (max-width:900px){.contact-card{position:static;order:-1}}
+.contact-card .btn{width:100%}
+.numrow{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:10px;font-size:.92rem;flex-wrap:wrap}
+.numrow b{user-select:all;font-variant-numeric:tabular-nums}
+.ph-av{width:84px;height:84px;border-radius:22px;background:var(--gold);color:var(--navy-950);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:2.4rem}
+.back{display:inline-flex;gap:8px;align-items:center;color:var(--on-navy-muted);text-decoration:none;font-size:.9rem}
+.back .ic{transform:rotate(180deg)}
+.back:hover{color:var(--gold)}
+.steps3{display:grid;gap:14px;counter-reset:s}
+.steps3 li{list-style:none;display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:start}
+.steps3 li::before{counter-increment:s;content:counter(s);width:32px;height:32px;border-radius:50%;background:var(--navy-900);color:var(--gold);display:grid;place-items:center;font-family:var(--f-mono);font-size:.8rem}
+.steps3 b{display:block}
+.steps3 span{color:var(--muted);font-size:.92rem}
+/* accounts & dashboards */
+.form-msg{font-size:.9rem;border-radius:12px;padding:10px 14px;background:#FCEBEB;color:#7A1F1F;border:1px solid #F2C2C2;margin:0}
+.form-msg.ok{background:#EAF5EE;color:#1F5E3A;border-color:#BFE0CC}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;border-radius:999px;padding:4px 10px}
+.pill.pending{background:#FFF4D6;color:#7A5300}
+.pill.approved{background:#E3F4EA;color:#1F6B40}
+.pill.rejected{background:#FCE4E4;color:#8A2323}
+.pill.suspended{background:#ECEEF3;color:#4A5568}
+.fbadge{display:inline-flex;align-items:center;font-size:.7rem;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--navy-900);color:var(--gold-200)}
+.dash{display:grid;gap:18px}
+.dash-card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px;display:grid;gap:14px;min-width:0}
+.dash-card h2{font-size:1.3rem;font-weight:700}
+.svc-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;border-top:1px solid var(--line);padding:10px 0}
+.svc-row b{display:block;overflow-wrap:anywhere}
+.hours-row{display:grid;grid-template-columns:110px 96px minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:center}
+.hours-row input[type=time]{width:100%;min-width:0;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:8px}
+.hours-row input[disabled]{opacity:.45}
+@media (max-width:560px){.hours-row{grid-template-columns:1fr 1fr}.hours-row .day{font-weight:700}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tile{background:var(--navy-900);color:var(--on-navy);border-radius:16px;padding:16px}
+.tile b{display:block;font-family:var(--f-display);font-size:2rem;color:var(--white);font-variant-numeric:tabular-nums}
+.tile span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.adm-row{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:12px;min-width:0}
+.adm-acts{display:flex;flex-wrap:wrap;gap:8px}
+.adm-acts .btn{padding:9px 14px;font-size:.85rem}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px 16px;font-size:.9rem;overflow-wrap:anywhere}
+.kv span{color:var(--muted);font-size:.78rem}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.svc-list-pub div{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:10px 0}
+.svc-list-pub div:first-child{border-top:0}
+.svc-list-pub small{display:block;color:var(--muted);font-size:.84rem}
 /* cta band */
 .cta{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
 @media (max-width:860px){.cta{grid-template-columns:1fr}}
@@ -490,6 +563,7 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
       <a href="#solutions">Business solutions</a>
       <a href="#shop">Shop</a>
       <a href="#about">About</a>
+      <a href="#account" data-acct>Sign in</a>
     </nav>
     <a class="btn btn-gold btn-desk" href="#join" data-magnetic>List your business <svg class="ic arr"><use href="#i-arrow"/></svg></a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg class="ic"><use href="#i-menu"/></svg></button>
@@ -506,6 +580,7 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
   <a class="dl" href="#solutions">Solutions <span>03</span></a>
   <a class="dl" href="#shop">Shop <span>04</span></a>
   <a class="dl" href="#about">About <span>05</span></a>
+  <a class="dl" href="#account"><span data-acct style="font:inherit;color:inherit;letter-spacing:inherit">Sign in</span> <span>06</span></a>
   <a class="btn btn-gold" href="#join">List your business</a>
 </div>
 
@@ -567,6 +642,13 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
         <p class="sub">Services, shops, food and products from across Lusaka. Tap a category to start a request. More categories are added as businesses join.</p>
       </div>
       <div class="sectors" id="sectorCards"></div>
+    </div>
+  </section>
+
+  <section class="sec white" id="recentSec" hidden>
+    <div class="wrap">
+      <div class="list-head"><div class="sec-head" style="margin:0"><span class="eyebrow">Recently listed</span><h2 class="h2">Local businesses you can <span class="serif">contact today.</span></h2></div><a class="link" href="#find">See all businesses <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+      <div class="biz-grid" id="recentList"></div>
     </div>
   </section>
 
@@ -634,14 +716,15 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
       <div style="display:grid;gap:20px" data-reveal>
         <span class="eyebrow">For service providers</span>
         <h2 class="h2">Run a business in Lusaka? <span class="serif">Get listed free.</span></h2>
-        <p class="sub">Service providers, shops, food businesses and product sellers can apply now. Customer requests come straight to your WhatsApp.</p>
+        <p class="sub">Service providers, shops, food businesses and product sellers can apply now. Customers contact you directly by phone or WhatsApp.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-navy" href="#join" data-magnetic>Apply to be listed <svg class="ic arr"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="#solutions">Promote your business</a></div>
       </div>
       <ul class="perks" data-reveal>
         <li><svg class="ic"><use href="#i-check"/></svg><span><b>Free listing during launch.</b> No upfront cost to join.</span></li>
-        <li><svg class="ic"><use href="#i-check"/></svg><span><b>ServiceLink Verified badge</b> once your phone and email are confirmed.</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><b>Your own business page</b> with a link you can share on WhatsApp and Facebook.</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><b>ServiceLink Verified badge</b> once your details are confirmed.</span></li>
         <li><svg class="ic"><use href="#i-check"/></svg><span><b>Discovered by local customers</b> searching across Lusaka.</span></li>
-        <li><svg class="ic"><use href="#i-check"/></svg><span><b>Organised customer requests</b> with what they need, their area and date.</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><b>Direct contact.</b> Customers call or WhatsApp you straight from your listing.</span></li>
         <li><svg class="ic"><use href="#i-check"/></svg><span><b>Optional promotion help</b> with adverts, your logo, price list or catalogue.</span></li>
       </ul>
     </div>
@@ -653,21 +736,25 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
   <div class="phead"><div class="phead-orb"></div><div class="wrap">
     <span class="eyebrow">Discover</span>
     <h1>Find it in <span class="gold">Lusaka.</span></h1>
-    <p class="lead">Looking for a service provider, a shop or a product? Pick a category, tell us what you need, and send it to ServiceLink on WhatsApp. We connect you with local businesses that can help.</p>
+    <p class="lead">Browse local businesses, products and service providers, and contact them directly by phone or WhatsApp. Can't find what you need? Send a request and ServiceLink will connect you.</p>
   </div></div>
   <div class="sec" style="padding-top:36px">
     <div class="wrap find">
       <div>
         <div class="toolbar">
           <div class="tabs" id="sectorTabs" role="group" aria-label="Filter by sector"></div>
-          <label class="field-s" for="catFilter"><svg class="ic"><use href="#i-search"/></svg><span class="sr">Filter categories</span><input id="catFilter" placeholder="Filter categories"></label>
+          <label class="field-s" for="catFilter"><svg class="ic"><use href="#i-search"/></svg><span class="sr">Search businesses</span><input id="catFilter" placeholder="Search businesses, services or areas" autocomplete="off"></label>
         </div>
+        <div class="filter-on" id="catOn" hidden><span>Showing <b id="catOnName"></b></span><button type="button" id="catClear">Show all</button></div>
+        <div class="list-head"><h2 id="bizCount">Listed businesses</h2></div>
+        <div class="biz-grid" id="bizList"></div>
+        <div class="list-head" style="margin-top:44px"><h2>Browse by category</h2></div>
         <div class="cats" id="cats"></div>
-        <div class="info"><svg class="ic"><use href="#i-spark"/></svg><span>We are verifying our founding businesses now. Until the directory goes live, every request is matched by the ServiceLink team so you only hear from businesses that can help.</span></div>
+        <div class="info"><svg class="ic"><use href="#i-spark"/></svg><span>Every business is checked by ServiceLink before it appears here. If something on a listing looks wrong, tap <b>Report this listing</b> on the business page.</span></div>
       </div>
       <aside class="panel" id="reqPanel">
         <div id="reqFormWrap">
-          <div style="display:grid;gap:6px;margin-bottom:14px"><h2>Send a request</h2><p class="hint">Free and with no obligation. Required fields are marked *.</p></div>
+          <div style="display:grid;gap:6px;margin-bottom:14px"><h2>Can't find it? Ask us</h2><p class="hint">Tell ServiceLink what you need and we will connect you with a local business. Free, with no obligation.</p></div>
           <form class="form" id="reqForm" novalidate>
             <div class="fld"><label for="r-svc">Category *</label><select id="r-svc" required></select><span class="err">Choose a category.</span></div>
             <div class="fld"><label for="r-job">What are you looking for? *</label><textarea id="r-job" required placeholder="e.g. A leaking kitchen tap fixed, or a birthday cake for 30 people."></textarea><span class="err">Describe what you need in a few words.</span></div>
@@ -816,6 +903,19 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
   </div>
 </section>
 
+<!-- ============ BUSINESS PROFILE ============ -->
+<section class="view" id="v-biz" data-view="biz" hidden>
+  <div id="bizProfile"></div>
+</section>
+
+<!-- ============ ACCOUNT / DASHBOARD / ADMIN ============ -->
+<section class="view" id="v-account" data-view="account" hidden>
+  <div class="phead"><div class="phead-orb"></div><div class="wrap"><span class="eyebrow">Your account</span><h1 id="acctTitle">Sign in to <span class="gold">ServiceLink.</span></h1><p class="lead" id="acctLead">Customers sign in to book and track requests. Businesses sign in to manage their listing.</p></div></div>
+  <div class="sec" style="padding-top:36px"><div class="wrap" style="max-width:600px"><div class="panel" style="position:static" id="acctBox"><p class="hint">Loading…</p></div></div></div>
+</section>
+<section class="view" id="v-dashboard" data-view="dashboard" hidden><div id="dashBox"></div></section>
+<section class="view" id="v-admin" data-view="admin" hidden><div id="adminBox"></div></section>
+
 <!-- ============ JOIN ============ -->
 <section class="view" id="v-join" data-view="join" hidden>
   <div class="phead"><div class="phead-orb"></div><div class="wrap">
@@ -826,6 +926,16 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
   <div class="sec" style="padding-top:40px">
     <div class="wrap join">
       <div class="panel" style="position:static">
+        <div id="joinCta" hidden style="display:grid;gap:20px">
+          <div style="display:grid;gap:8px"><span class="eyebrow">How to get listed</span><h2>Three steps to your listing</h2></div>
+          <ol class="steps3" style="margin:0;padding:0">
+            <li><div><b>Fill in the sign-up form</b><span>Your business name, category, area, phone, WhatsApp and what you offer. It takes about three minutes.</span></div></li>
+            <li><div><b>We check your details</b><span>ServiceLink confirms your business is genuine before it goes live.</span></div></li>
+            <li><div><b>Your listing goes live</b><span>Customers find you and contact you directly by phone or WhatsApp. You get your own page to share.</span></div></li>
+          </ol>
+          <a class="btn btn-gold" id="formBtn" href="#" target="_blank" rel="noopener" data-magnetic>Open the sign-up form <svg class="ic arr"><use href="#i-arrow"/></svg></a>
+          <p class="small">Listing is free during launch. Questions? WhatsApp <b>077 159 3633</b>.</p>
+        </div>
         <form class="form" id="joinForm" novalidate>
           <div class="f2">
             <div class="fld"><label for="j-biz">Business name *</label><input id="j-biz" required autocomplete="organization" placeholder="e.g. Chalala Fix &amp; Fit"><span class="err">Add your business name.</span></div>
@@ -839,6 +949,7 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
             <div class="fld"><label for="j-phone">Phone *</label><input id="j-phone" type="tel" required autocomplete="tel"><span class="err">Add a Zambian phone number.</span></div>
             <div class="fld"><label for="j-email">Email *</label><input id="j-email" type="email" required autocomplete="email"><span class="err">Add a valid email.</span></div>
           </div>
+          <div class="fld"><label for="j-wa">WhatsApp number <em>(if different from phone)</em></label><input id="j-wa" type="tel" autocomplete="tel"><span class="err">Check this number.</span></div>
           <div class="f2">
             <div class="fld"><label for="j-s1">A service or product you offer</label><input id="j-s1" placeholder="e.g. Geyser installation"></div>
             <div class="fld"><label for="j-p1">Starting price</label><input id="j-p1" inputmode="numeric" placeholder="e.g. K800"></div>
@@ -855,12 +966,13 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
               <label><input type="checkbox" value="Business cards"> Business cards</label>
             </div>
           </div>
-          <button class="btn btn-navy" type="submit">Create my application <svg class="ic arr"><use href="#i-arrow"/></svg></button>
+          <p class="form-msg" id="joinMsg" hidden></p>
+          <button class="btn btn-navy" type="submit">Register my business <svg class="ic arr"><use href="#i-arrow"/></svg></button>
         </form>
         <div class="done" id="joinDone" hidden></div>
       </div>
       <div class="preview-wrap">
-        <span class="eyebrow">Your listing preview</span>
+        <span class="eyebrow" id="previewLabel">Your listing preview</span>
         <article class="listing" id="listing" data-tilt>
           <div class="cover"></div>
           <div class="av" id="lvAv">S</div>
@@ -870,10 +982,10 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
             <div class="meta"><span><svg class="ic"><use href="#i-pin"/></svg> <span id="lvArea">Your area</span>, Zambia</span><span><svg class="ic"><use href="#i-cal"/></svg> Joined 2026</span></div>
             <p class="small" id="lvAbout">Tell customers what you do and why they should book you.</p>
             <div class="svc"><div><span id="lvS1">Your first service or product</span><b id="lvP1">From K—</b></div></div>
-            <div class="acts"><span style="background:var(--navy-900);color:#fff">Request booking</span><span style="background:#1F9D55;color:#fff">WhatsApp</span></div>
+            <div class="acts"><span style="background:#1F9D55;color:#fff">WhatsApp</span><span style="background:var(--navy-900);color:#fff">Call</span></div>
           </div>
         </article>
-        <p class="small">This preview shows how your listing will look on ServiceLink once it is verified.</p>
+        <p class="small" id="previewNote">This preview shows how your listing will look on ServiceLink once it is verified.</p>
       </div>
     </div>
   </div>
@@ -957,9 +1069,11 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
 <script>
 (function(){
 "use strict";
+const SITE_URL="https://servicelinkzm1.github.io";
 const WA="260771593633";
 const RM=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const HAS_G=typeof window.gsap!=="undefined";
@@ -1067,17 +1181,107 @@ function renderCats(){
   $("#cats").innerHTML=list.length?list.map(c=>`<button class="cat spot" type="button" data-pick="${esc(c.name)}" aria-pressed="${c.name===pickedCat}"><span class="k">${esc(c.sectorName)}</span><b>${esc(c.name)}</b><span class="go">Request ${icon("i-arrow")}</span></button>`).join("")
    :`<div class="empty">No category matches “${esc(q)}”. Choose <b>Something else</b> in the form and describe what you need.</div>`;
   if(HAS_G&&!RM)gsap.from("#cats .cat",{y:16,opacity:0,duration:.45,stagger:.025,ease:"power2.out",clearProps:"all"});
+  renderBiz();
 }
 $("#sectorTabs").addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(!b)return;curSector=b.dataset.tab;$$("#sectorTabs button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderCats();});
 $("#catFilter").addEventListener("input",renderCats);
 function pickCat(name,scroll){
   pickedCat=name;$("#r-svc").value=name;$("#r-svc").closest(".fld").classList.remove("bad");
   $$("#cats .cat").forEach(c=>c.setAttribute("aria-pressed",c.dataset.pick===name));
-  if(scroll&&window.innerWidth<1000)$("#reqPanel").scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});
-  if(HAS_G&&!RM)gsap.fromTo("#reqPanel",{boxShadow:"0 0 0 0 rgba(217,169,46,.6)"},{boxShadow:"0 0 0 10px rgba(217,169,46,0)",duration:.9});
+  curCat=name&&name!=="Something else"?name:""; renderBiz();
+  if(scroll)$("#bizCount").scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});
 }
 $("#cats").addEventListener("click",e=>{const b=e.target.closest("[data-pick]");if(b)pickCat(b.dataset.pick,true);});
 $("#r-svc").addEventListener("change",e=>{pickedCat=e.target.value;$$("#cats .cat").forEach(c=>c.setAttribute("aria-pressed",c.dataset.pick===pickedCat));});
+$("#catClear").addEventListener("click",()=>{curCat="";pickedCat="";$$("#cats .cat").forEach(c=>c.setAttribute("aria-pressed","false"));renderBiz();});
+
+/* ---------- business listings (from Google Sheet) ---------- */
+let LISTINGS=null, LOAD_STATE="loading", curCat="", curBiz=null;
+function parseCSV(t){const rows=[];let row=[],f="",q=false;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c==='"'){if(t[i+1]==='"'){f+='"';i++;}else q=false;}else f+=c;}else{if(c==='"')q=true;else if(c===","){row.push(f);f="";}else if(c==="\n"){row.push(f);rows.push(row);row=[];f="";}else if(c!=="\r")f+=c;}}if(f!==""||row.length){row.push(f);rows.push(row);}return rows;}
+function waNum(v){let d=String(v||"").replace(/\D/g,"");if(!d)return"";if(d.startsWith("00"))d=d.slice(2);if(d.startsWith("260"))return d;if(d.startsWith("0"))return"260"+d.slice(1);if(d.length===9)return"260"+d;return d;}
+function prettyNum(v){const d=waNum(v);if(d.startsWith("260")&&d.length===12){const l="0"+d.slice(3);return l.slice(0,3)+" "+l.slice(3,6)+" "+l.slice(6);}return String(v||"").trim();}
+function slugify(t){return String(t).toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,50)||"business";}
+function rowsToListings(rows){
+  if(!rows.length)return[];
+  const H=rows[0].map(h=>h.trim().toLowerCase()), used=new Set();
+  const col=re=>{const i=H.findIndex((h,k)=>!used.has(k)&&re.test(h));if(i>=0)used.add(i);return i;};
+  const C={approved:col(/approved/),verified:col(/verified/),name:col(/business name|name of (your )?business/),wa:col(/whatsapp/),phone:col(/phone|call/),email:col(/e-?mail/),cat:col(/category|type of business/),area:col(/area|location|where/),price:col(/starting price|price/),services:col(/service|product|offer/),hours:col(/hours|open/),social:col(/facebook|instagram|social|page/),about:col(/about|describe|description/),owner:col(/your name|owner|contact person/)};
+  const g=(r,k)=>C[k]>=0?String(r[C[k]]||"").trim():"";
+  const seen={};
+  return rows.slice(1).filter(r=>r.some(x=>String(x).trim())&&/^y/i.test(g(r,"approved"))&&g(r,"name")).map(r=>{
+    const name=g(r,"name");let slug=slugify(name);seen[slug]=(seen[slug]||0)+1;if(seen[slug]>1)slug+="-"+seen[slug];
+    const cat=g(r,"cat"), sec=(ALLCATS.find(c=>c.name.toLowerCase()===cat.toLowerCase())||{}).sector||"other";
+    return {name,slug,cat:cat||"Local business",sector:sec,area:g(r,"area"),phone:g(r,"phone"),wa:g(r,"wa")||g(r,"phone"),email:g(r,"email"),services:g(r,"services"),price:g(r,"price"),hours:g(r,"hours"),social:g(r,"social"),about:g(r,"about"),verified:/^y/i.test(g(r,"verified"))};
+  }).reverse();
+}
+function bizMsg(b){return `Hello ${b.name}, I found your business on ServiceLink (${SITE_URL}). I would like to ask about your services.`;}
+function bizCard(b){
+  const w=waNum(b.wa), t=waNum(b.phone||b.wa);
+  return `<article class="biz spot" data-tilt>
+   <div class="biz-top"><div class="biz-av" aria-hidden="true">${esc(b.name.replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div><div><h3>${esc(b.name)}</h3><span class="where">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div>
+   <div class="badges">${b.featured?`<span class="fbadge">Featured</span>`:""}${b.verified?`<span class="vbadge">${icon("i-check")} ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span></div>
+   ${b.about||b.services?`<p>${esc(b.about||b.services)}</p>`:""}
+   <div class="biz-acts">${w?`<a class="btn btn-wa" href="https://wa.me/${w}?text=${encodeURIComponent(bizMsg(b))}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}${t?`<a class="btn btn-navy" href="tel:+${t}">${icon("i-phone")} Call</a>`:""}</div>
+   <a class="biz-more" href="#biz-${b.slug}">View business page ${icon("i-arrow")}</a></article>`;
+}
+function bizMatches(b,q){if(!q)return true;return [b.name,b.cat,b.area,b.services,b.about].join(" ").toLowerCase().includes(q);}
+function renderBiz(){
+  const el=$("#bizList");if(!el)return;
+  const q=$("#catFilter").value.trim().toLowerCase();
+  $("#catOn").hidden=!curCat; $("#catOnName").textContent=curCat;
+  if(LOAD_STATE==="loading"){el.innerHTML=`<div class="empty-biz"><p>Loading businesses…</p></div>`;$("#bizCount").textContent="Listed businesses";return;}
+  const all=LISTINGS||[];
+  const list=all.filter(b=>(curSector==="all"||b.sector===curSector)&&(!curCat||b.cat.toLowerCase()===curCat.toLowerCase())&&bizMatches(b,q));
+  $("#bizCount").textContent=list.length?(list.length+(list.length===1?" business":" businesses")+(curCat?" · "+curCat:"")):"Listed businesses";
+  if(list.length){el.innerHTML=list.map(bizCard).join("");if(HAS_G&&!RM)gsap.from("#bizList .biz",{y:18,opacity:0,duration:.5,stagger:.04,ease:"power2.out",clearProps:"opacity,transform"});return;}
+  const what=curCat||(q?"“"+$("#catFilter").value.trim()+"”":"");
+  const msg=LOAD_STATE==="error"?"Businesses couldn't load right now. Check your connection and try again, or send us a request."
+    :!all.length?"Our first businesses are being checked now and will appear here soon."
+    :"No listed business matches "+esc(what||"this filter")+" yet.";
+  el.innerHTML=`<div class="empty-biz"><h3>${all.length||LOAD_STATE==="error"?"Nothing here yet":"Coming soon"}</h3><p>${msg} Send ServiceLink a request and we will connect you with a local business that can help.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-navy" type="button" data-goreq>Send a request ${icon("i-arrow","arr")}</button><a class="btn btn-ghost" href="#join">List your business</a></div></div>`;
+}
+document.addEventListener("click",e=>{if(e.target.closest("[data-goreq]")){$("#reqPanel").scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});setTimeout(()=>$("#r-job").focus({preventScroll:true}),500);}});
+function renderRecent(){
+  const all=LISTINGS||[];$("#recentSec").hidden=!all.length;
+  if(all.length)$("#recentList").innerHTML=all.slice(0,6).map(bizCard).join("");
+}
+function renderProfile(){
+  const box=$("#bizProfile");
+  const b=(LISTINGS||[]).find(x=>x.slug===curBiz);
+  if(!b){
+    box.innerHTML=`<div class="phead"><div class="phead-orb"></div><div class="wrap"><a class="back" href="#find">${icon("i-arrow")} All businesses</a><h1>${LOAD_STATE==="loading"?"Loading…":"Business not found"}</h1><p class="lead">${LOAD_STATE==="loading"?"Getting this business page ready.":"This listing may have been removed or the link is incomplete."}</p></div></div>`;
+    document.title="Business · ServiceLink Zambia";return;
+  }
+  const w=waNum(b.wa), t=waNum(b.phone||b.wa), link=SITE_URL+"/#biz-"+b.slug;
+  const social=b.social?(/^https?:\/\//i.test(b.social)?`<a class="link" href="${esc(b.social)}" target="_blank" rel="noopener">${esc(b.social.replace(/^https?:\/\/(www\.)?/i,"").slice(0,48))}</a>`:esc(b.social)):"";
+  box.innerHTML=`<div class="phead"><div class="phead-orb"></div><div class="wrap">
+    <a class="back" href="#find">${icon("i-arrow")} All businesses</a>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><div class="ph-av" aria-hidden="true">${esc(b.name.replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div>
+    <div style="display:grid;gap:10px;min-width:0"><h1 style="font-size:clamp(2.2rem,6vw,4.2rem);overflow-wrap:anywhere">${esc(b.name)}</h1>
+    <div class="badges">${b.verified?`<span class="vbadge">${icon("i-check")} ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span><span class="catbadge">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div></div>
+  </div></div>
+  <div class="sec" style="padding-top:36px"><div class="wrap prof">
+    <div style="display:grid;gap:16px">
+      ${b.about?`<div class="prof-card"><h2>About</h2><p class="pre">${esc(b.about)}</p></div>`:""}
+      ${(b.svcList||[]).length?`<div class="prof-card"><h2>Services and prices</h2><div class="svc-list-pub">${b.svcList.map(s=>`<div><span><b>${esc(s.name)}</b>${s.description?`<small>${esc(s.description)}</small>`:""}</span><b style="white-space:nowrap">${s.price_from!=null?"From "+kw(s.price_from):"Ask for price"}</b></div>`).join("")}</div></div>`:""}
+      ${(b.hoursList||[]).length?`<div class="prof-card"><h2>Working hours</h2><div class="svc-list-pub">${b.hoursList.map(h=>`<div><span>${DAYS[h.weekday]}</span><b>${h.closed?"Closed":String(h.opens).slice(0,5)+" – "+String(h.closes).slice(0,5)}</b></div>`).join("")}</div></div>`:""}
+      ${social?`<div class="prof-card"><h2>Find them online</h2><div class="numrow" style="border:0;padding:0"><span>Social page</span>${social}</div></div>`:""}
+    </div>
+    <aside class="prof-card contact-card">
+      <h2>Contact ${esc(b.name)}</h2>
+      <p class="small">You are contacting the business directly. Agree the price and details with them.</p>
+      ${w?`<a class="btn btn-wa" href="https://wa.me/${w}?text=${encodeURIComponent(bizMsg(b))}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp ${esc(b.name)}</a>`:""}
+      ${t?`<a class="btn btn-navy" href="tel:+${t}">${icon("i-phone")} Call ${esc(prettyNum(b.phone||b.wa))}</a>`:""}
+      ${b.email?`<a class="btn btn-ghost" href="mailto:${esc(b.email)}">${icon("i-mail")} Email</a>`:""}
+      ${t?`<div class="numrow"><span>Phone</span><b>${esc(prettyNum(b.phone||b.wa))}</b></div>`:""}
+      ${w&&b.wa!==b.phone?`<div class="numrow"><span>WhatsApp</span><b>${esc(prettyNum(b.wa))}</b></div>`:""}
+      ${b.email?`<div class="numrow"><span>Email</span><b>${esc(b.email)}</b></div>`:""}
+      <div class="numrow"><span>Share this page</span><button class="mini" style="color:var(--ink);border-color:var(--line)" type="button" data-copy="${esc(link)}">${icon("i-copy")} Copy link</button></div>
+      <a class="small" style="text-decoration:underline" href="https://wa.me/${WA}?text=${encodeURIComponent("Hello ServiceLink, I would like to report a problem with the listing for "+b.name+" ("+link+"): ")}" target="_blank" rel="noopener">Report this listing</a>
+    </aside>
+  </div></div>`;
+  document.title=b.name+" · ServiceLink Zambia";
+}
 const today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
 $("#r-date").min=today.toISOString().slice(0,10);
 $("#reqForm").addEventListener("submit",e=>{
@@ -1178,17 +1382,350 @@ function joinSync(){
 }
 $("#joinForm").addEventListener("input",joinSync);$("#joinForm").addEventListener("change",joinSync);
 $("#j-biz").addEventListener("input",()=>{if(HAS_G&&!RM)gsap.fromTo("#lvAv",{scale:.8},{scale:1,duration:.4,ease:"back.out(3)"});});
-$("#joinForm").addEventListener("submit",e=>{
+$("#joinForm").addEventListener("submit",async e=>{
   e.preventDefault();if(!check(e.target))return;
-  const r=ref("SLV");
-  const help=$$("#joinHelp input:checked").map(x=>x.value);
-  const m=`Hello ServiceLink, I would like to list my business.\n\nRef: ${r}\nBusiness: ${$("#j-biz").value.trim()}\nOwner: ${$("#j-owner").value.trim()}\nCategory: ${$("#j-cat").value}\nArea: ${$("#j-area").value.trim()}\nPhone: ${$("#j-phone").value.trim()}\nEmail: ${$("#j-email").value.trim()}\nService or product and starting price: ${($("#j-s1").value.trim()||"-")} ${$("#j-p1").value.trim()?"from "+$("#j-p1").value.trim():""}\nSocial page: ${$("#j-social").value.trim()||"-"}\nAbout: ${$("#j-about").value.trim()||"-"}\nAlso interested in: ${help.length?help.join(", "):"-"}`;
-  showDone($("#joinDone"),$("#joinForm"),r,"Your application is ready",m,"Send it on WhatsApp. We will confirm your phone and email, then publish your listing.",()=>{});
+  if(!sb){setMsg($("#joinMsg"),"Registration is not available right now. Please WhatsApp ServiceLink on 077 159 3633.");return;}
+  if(!session){acctMode="signup";acctType="business";afterLogin="join";location.hash="account";return;}
+  const btn=e.target.querySelector("button[type=submit]"),msg=$("#joinMsg");setMsg(msg,"");busyBtn(btn,true,"Registering…");
+  try{
+    const {data:biz,error}=await sb.from("businesses").insert({owner_id:session.user.id,name:val("#j-biz"),category:$("#j-cat").value,area:val("#j-area"),phone:val("#j-phone"),whatsapp:val("#j-wa")||null,email:val("#j-email")||null,about:val("#j-about")||null,social:val("#j-social")||null}).select().single();
+    if(error)throw error;
+    if(val("#j-s1")){const pr=parseFloat(val("#j-p1").replace(/[^0-9.]/g,""));await sb.from("services").insert({business_id:biz.id,name:val("#j-s1"),price_from:isFinite(pr)?pr:null});}
+    if(val("#j-owner")&&me&&!me.full_name)await sb.from("profiles").update({full_name:val("#j-owner")}).eq("id",session.user.id);
+    const help=$$("#joinHelp input:checked").map(x=>x.value);pendingHelp=help.length?help:null;
+    myBiz=biz;toast("Business registered");location.hash="dashboard";
+  }catch(err){setMsg(msg,friendlyErr(err));}
+  finally{busyBtn(btn,false);}
 });
 
+/* ---------- accounts, business dashboard, admin (Supabase) ---------- */
+const SB_URL="https://lhzqthvzsiiceipznaoc.supabase.co";
+const SB_KEY="sb_publishable_bcaNthjP9jF_FcvK9RBlww__-72Xf80";
+let sb=null;
+try{if(window.supabase&&window.supabase.createClient)sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}catch(e){sb=null;}
+let session=null, me=null, myBiz=null, authReady=false, recovery=false, acctMode="signin", acctType="customer", afterLogin=null, pendingHelp=null, adminTab="pending", prerendered=null;
+const DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const DAY_ORDER=[1,2,3,4,5,6,0];
+const val=s=>{const el=$(s);return el?el.value.trim():"";};
+function kw(n){return n==null||n===""?"":"K"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2});}
+function fmtDay(d){try{return new Date(d).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});}catch(e){return "";}}
+function friendlyErr(e){
+  const m=(e&&(e.message||e.error_description||e.msg))||String(e||"");
+  if(/Invalid login credentials/i.test(m))return "Your email or password is incorrect.";
+  if(/already registered|already been registered|already exists/i.test(m))return "An account with this email already exists. Sign in instead.";
+  if(/Password should be|password.*characters/i.test(m))return "Choose a password with at least 8 characters.";
+  if(/rate limit|too many/i.test(m))return "Too many attempts. Please wait a few minutes and try again.";
+  if(/Email not confirmed/i.test(m))return "Please confirm your email first. Check your inbox for the link.";
+  if(/duplicate key.*owner/i.test(m))return "You have already registered a business with this account.";
+  if(/Failed to fetch|NetworkError|network|Load failed/i.test(m))return "Can't reach ServiceLink right now. Check your internet connection and try again.";
+  if(/permission denied|row-level security|JWT/i.test(m))return "You don't have permission to do that. Please sign in again.";
+  if(/violates check constraint/i.test(m))return "Please check the details you entered and try again.";
+  return m||"Something went wrong. Please try again.";
+}
+function setMsg(el,text,ok){if(!el)return;el.hidden=!text;el.textContent=text||"";el.className="form-msg"+(ok?" ok":"");}
+function busyBtn(btn,on,label){if(!btn)return;if(on){btn.dataset.l=btn.innerHTML;btn.disabled=true;btn.textContent=label||"Please wait…";}else{btn.disabled=false;if(btn.dataset.l)btn.innerHTML=btn.dataset.l;}}
+function pill(s){const t={pending:"Awaiting approval",approved:"Live",rejected:"Not approved",suspended:"Suspended"}[s]||s;return `<span class="pill ${esc(s)}">${esc(t)}</span>`;}
+function phead(eyebrow,title,lead){return `<div class="phead"><div class="phead-orb"></div><div class="wrap"><span class="eyebrow">${eyebrow}</span><h1>${title}</h1>${lead?`<p class="lead">${lead}</p>`:""}</div></div>`;}
+function firstName(){const n=(me&&me.full_name)||(session&&session.user&&session.user.user_metadata&&session.user.user_metadata.full_name)||"";return n.split(" ")[0]||"there";}
+
+async function refreshMe(){
+  if(!sb){authReady=true;updateAuthUI();return;}
+  try{
+    const {data}=await sb.auth.getSession(); session=data.session;
+    if(session){
+      const [p,b]=await Promise.all([
+        sb.from("profiles").select("*").eq("id",session.user.id).maybeSingle(),
+        sb.from("businesses").select("*").eq("owner_id",session.user.id).maybeSingle()
+      ]);
+      me=p.data||null; myBiz=b.data||null;
+    }else{me=null;myBiz=null;}
+  }catch(e){}
+  authReady=true; updateAuthUI();
+  if(typeof currentView!=="undefined"&&["account","dashboard","admin","join"].includes(currentView))renderView(currentView);
+}
+function updateAuthUI(){$$("[data-acct]").forEach(a=>a.textContent=session?"My account":"Sign in");}
+if(sb){sb.auth.onAuthStateChange((ev,s)=>{session=s;if(ev==="PASSWORD_RECOVERY"){recovery=true;setTimeout(()=>{location.hash="account";},0);}setTimeout(refreshMe,0);});}
+function renderView(v){if(v==="account")renderAccount();else if(v==="dashboard")renderDashboard();else if(v==="admin")renderAdmin();else if(v==="join")renderJoinGate();}
+function needSignIn(box,eyebrow,title,lead,back){
+  afterLogin=back;
+  box.innerHTML=phead(eyebrow,title,lead)+`<div class="sec" style="padding-top:32px"><div class="wrap" style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-navy" href="#account" data-am-go="signin">Sign in</a><a class="btn btn-ghost" href="#account" data-am-go="signup">Create an account</a></div></div>`;
+}
+document.addEventListener("click",e=>{const g=e.target.closest("[data-am-go]");if(g){acctMode=g.dataset.amGo;if(g.dataset.type)acctType=g.dataset.type;if(g.dataset.after)afterLogin=g.dataset.after;}});
+
+/* ----- account view ----- */
+function renderAccount(){
+  const box=$("#acctBox"), title=$("#acctTitle"), lead=$("#acctLead");
+  if(!sb){box.innerHTML=`<p>Accounts are not available right now. Please try again later, or WhatsApp ServiceLink on <b>077 159 3633</b>.</p>`;return;}
+  if(!authReady){box.innerHTML=`<p class="hint">Loading your account…</p>`;return;}
+  if(recovery){
+    title.innerHTML=`Choose a new <span class="gold">password.</span>`;lead.textContent="Enter a new password for your ServiceLink account.";
+    box.innerHTML=`<form class="form" id="newPassForm" novalidate><div class="fld"><label for="np-pass">New password *</label><input id="np-pass" type="password" required autocomplete="new-password"><span class="err">Use at least 8 characters.</span></div><p class="form-msg" id="npMsg" hidden></p><button class="btn btn-navy" type="submit">Save new password</button></form>`;
+    $("#newPassForm").onsubmit=async e=>{e.preventDefault();const f=$("#np-pass").closest(".fld");const pw=$("#np-pass").value;if(pw.length<8){f.classList.add("bad");return;}
+      const btn=e.target.querySelector("button");busyBtn(btn,true,"Saving…");const {error}=await sb.auth.updateUser({password:pw});busyBtn(btn,false);
+      if(error){setMsg($("#npMsg"),friendlyErr(error));return;}recovery=false;toast("Password updated");renderAccount();};
+    return;
+  }
+  if(session){
+    title.innerHTML=`Hello, <span class="gold">${esc(firstName())}.</span>`;lead.textContent="Manage your ServiceLink account.";
+    const role=me?me.role:"customer";
+    box.innerHTML=`<div style="display:grid;gap:12px">
+      <div class="numrow" style="border:0;padding:0"><span>Signed in as</span><b style="overflow-wrap:anywhere">${esc(session.user.email||"")}</b></div>
+      ${role==="admin"?`<a class="btn btn-gold" href="#admin">Open admin dashboard ${icon("i-arrow","arr")}</a>`:""}
+      ${myBiz?`<a class="btn btn-navy" href="#dashboard">Open business dashboard ${icon("i-arrow","arr")}</a>`:(role==="admin"?"":`<a class="btn btn-navy" href="#join">Register a business ${icon("i-arrow","arr")}</a>`)}
+      <a class="btn btn-ghost" href="#find">Find a business</a>
+      <p class="small">Your booking history will appear here when online booking opens.</p>
+      <button class="link" type="button" id="signOut" style="justify-self:start">Sign out</button></div>`;
+    $("#signOut").onclick=async()=>{await sb.auth.signOut();acctMode="signin";session=null;me=null;myBiz=null;updateAuthUI();toast("Signed out");renderAccount();};
+    return;
+  }
+  const up=acctMode==="signup";
+  title.innerHTML=up?`Create your <span class="gold">account.</span>`:`Sign in to <span class="gold">ServiceLink.</span>`;
+  lead.textContent=up?"Free for customers and businesses. Business owners use their account to register and manage their listing.":"Customers sign in to book and track requests. Businesses sign in to manage their listing.";
+  box.innerHTML=`<div class="tabs" role="group" aria-label="Sign in or create account" style="justify-self:start"><button type="button" data-am="signin" aria-pressed="${!up}">Sign in</button><button type="button" data-am="signup" aria-pressed="${up}">Create account</button></div>
+  <form class="form" id="authForm" novalidate>
+    ${up?`<div class="fld"><span style="font-size:.78rem;font-weight:600">I am</span><div class="seg" id="acctType"><button type="button" data-t="customer" aria-pressed="${acctType==="customer"}">A customer</button><button type="button" data-t="business" aria-pressed="${acctType==="business"}">A business owner</button></div></div>
+    <div class="f2"><div class="fld"><label for="a-name">Full name *</label><input id="a-name" required autocomplete="name"><span class="err">Add your name.</span></div>
+    <div class="fld"><label for="a-phone">Phone *</label><input id="a-phone" type="tel" required autocomplete="tel" placeholder="e.g. 097 123 4567"><span class="err">Add a Zambian phone number.</span></div></div>`:""}
+    <div class="fld"><label for="a-email">Email *</label><input id="a-email" type="email" required autocomplete="email"><span class="err">Add a valid email.</span></div>
+    <div class="fld"><label for="a-pass">Password *</label><input id="a-pass" type="password" required autocomplete="${up?"new-password":"current-password"}"><span class="err">Use at least 8 characters.</span></div>
+    <p class="form-msg" id="authMsg" hidden></p>
+    <button class="btn btn-navy" type="submit">${up?"Create my account":"Sign in"}</button>
+    ${up?`<p class="small">ServiceLink stores your name, phone and email to run your account and bookings.</p>`:`<button class="link" type="button" id="forgot" style="justify-self:start">Forgot your password?</button>`}
+  </form>`;
+  box.querySelectorAll("[data-am]").forEach(b=>b.onclick=()=>{acctMode=b.dataset.am;renderAccount();});
+  box.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{acctType=b.dataset.t;box.querySelectorAll("[data-t]").forEach(x=>x.setAttribute("aria-pressed",x===b));});
+  const fg=$("#forgot");
+  if(fg)fg.onclick=async()=>{const em=val("#a-email");if(!/^\S+@\S+\.\S+$/.test(em)){$("#a-email").closest(".fld").classList.add("bad");setMsg($("#authMsg"),"Type your email above first, then tap Forgot your password.");return;}
+    const {error}=await sb.auth.resetPasswordForEmail(em,{redirectTo:SITE_URL+"/"});
+    setMsg($("#authMsg"),error?friendlyErr(error):"If an account exists for that email, we've sent a link to reset your password.",!error);};
+  $("#authForm").onsubmit=async e=>{
+    e.preventDefault();if(!check(e.target))return;
+    const pw=$("#a-pass").value;if(pw.length<8){$("#a-pass").closest(".fld").classList.add("bad");return;}
+    const btn=e.target.querySelector("button[type=submit]"),msg=$("#authMsg");setMsg(msg,"");busyBtn(btn,true,up?"Creating your account…":"Signing in…");
+    try{
+      if(up){
+        const {data,error}=await sb.auth.signUp({email:val("#a-email"),password:pw,options:{data:{full_name:val("#a-name"),phone:val("#a-phone"),account_type:acctType},emailRedirectTo:SITE_URL+"/"}});
+        if(error)throw error;
+        if(!data.session){setMsg(msg,"Account created. Check your email for a confirmation link, then sign in.",true);return;}
+        session=data.session;await refreshMe();toast("Account created");
+        location.hash=afterLogin||(acctType==="business"?"join":"account");afterLogin=null;
+      }else{
+        const {data,error}=await sb.auth.signInWithPassword({email:val("#a-email"),password:pw});
+        if(error)throw error;
+        session=data.session;await refreshMe();toast("Signed in");
+        if(afterLogin){const a=afterLogin;afterLogin=null;location.hash=a;}else renderAccount();
+      }
+    }catch(err){setMsg(msg,friendlyErr(err));}
+    finally{busyBtn(btn,false);}
+  };
+}
+
+/* ----- join view gate ----- */
+function renderJoinGate(){
+  const cta=$("#joinCta"),form=$("#joinForm"),done=$("#joinDone");
+  if(!sb){cta.hidden=true;form.hidden=false;return;}
+  done.hidden=true;
+  if(!authReady){form.hidden=true;cta.hidden=false;cta.innerHTML=`<p class="hint">Loading…</p>`;return;}
+  if(!session){
+    form.hidden=true;cta.hidden=false;
+    cta.innerHTML=`<div style="display:grid;gap:8px"><span class="eyebrow">How to get listed</span><h2>Three steps to your listing</h2></div>
+    <ol class="steps3" style="margin:0;padding:0">
+      <li><div><b>Create a free business account</b><span>Use your email and a password. It takes a minute.</span></div></li>
+      <li><div><b>Add your business details</b><span>Name, category, area, phone, WhatsApp and what you offer.</span></div></li>
+      <li><div><b>ServiceLink approves your listing</b><span>We check your details, then customers can find you and contact you directly.</span></div></li>
+    </ol>
+    <a class="btn btn-gold" href="#account" data-am-go="signup" data-type="business" data-after="join">Create a business account ${icon("i-arrow","arr")}</a>
+    <p class="small">Already have an account? <a href="#account" data-am-go="signin" data-after="join">Sign in</a>. Listing is free during launch.</p>`;
+    return;
+  }
+  if(myBiz){
+    form.hidden=true;cta.hidden=false;
+    cta.innerHTML=`<div style="display:grid;gap:8px"><span class="eyebrow">Your business</span><h2>${esc(myBiz.name)}</h2><div>${pill(myBiz.status)}</div></div>
+    <p class="hint">${myBiz.status==="approved"?"Your listing is live. Manage your details, services and hours from your dashboard.":"Your business is registered. Add your services and working hours while ServiceLink checks your details."}</p>
+    <a class="btn btn-navy" href="#dashboard">Open business dashboard ${icon("i-arrow","arr")}</a>`;
+    return;
+  }
+  cta.hidden=true;form.hidden=false;
+  if(!$("#j-owner").value&&me&&me.full_name)$("#j-owner").value=me.full_name;
+  if(!$("#j-phone").value&&me&&me.phone)$("#j-phone").value=me.phone;
+  if(!$("#j-email").value&&session.user.email)$("#j-email").value=session.user.email;
+  joinSync();
+}
+
+/* ----- business dashboard ----- */
+async function renderDashboard(){
+  const box=$("#dashBox");
+  if(!sb){box.innerHTML=phead("Business dashboard","Dashboard <span class='gold'>unavailable.</span>","Please try again later.");return;}
+  if(!authReady){box.innerHTML=phead("Business dashboard","Loading…","");return;}
+  if(!session){needSignIn(box,"Business dashboard","Sign in to manage <span class='gold'>your business.</span>","Use the account you registered your business with.","dashboard");return;}
+  if(!myBiz){box.innerHTML=phead("Business dashboard","No business <span class='gold'>yet.</span>","Register your business to get your own dashboard.")+`<div class="sec" style="padding-top:32px"><div class="wrap"><a class="btn btn-navy" href="#join">Register your business ${icon("i-arrow","arr")}</a></div></div>`;return;}
+  const b=myBiz;
+  box.innerHTML=phead("Business dashboard",`${esc(b.name)}`,"")+`<div class="sec" style="padding-top:32px"><div class="wrap dash"><p class="hint">Loading your dashboard…</p></div></div>`;
+  let svcs=[],hrs=[];
+  try{
+    const [s,h]=await Promise.all([
+      sb.from("services").select("*").eq("business_id",b.id).order("sort").order("created_at"),
+      sb.from("business_hours").select("*").eq("business_id",b.id)
+    ]);
+    if(s.error)throw s.error;svcs=s.data||[];hrs=h.data||[];
+  }catch(err){box.querySelector(".dash").innerHTML=`<p class="form-msg">${esc(friendlyErr(err))}</p>`;return;}
+  const link=SITE_URL+"/#biz-"+b.slug;
+  const statusText={pending:"ServiceLink is checking your details. Your listing goes live as soon as it is approved. Meanwhile, add your services and working hours below.",
+    approved:"Your listing is live. Customers can find you and contact you directly.",
+    rejected:"Your listing was not approved."+(b.admin_note?" Reason: "+b.admin_note:"")+" Update your details below, then WhatsApp ServiceLink to ask for another review.",
+    suspended:"Your listing is paused. Please contact ServiceLink on 077 159 3633."}[b.status]||"";
+  const hmap={};hrs.forEach(x=>hmap[x.weekday]=x);
+  const hasHours=hrs.length>0;
+  const defH=d=>d===0?{closed:true}:d===6?{opens:"08:00",closes:"13:00"}:{opens:"08:00",closes:"17:00"};
+  const t5=t=>t?String(t).slice(0,5):"";
+  box.querySelector(".dash").innerHTML=`
+  <div class="dash-card"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><h2>Listing status</h2>${pill(b.status)}</div>
+    <p class="hint">${esc(statusText)}</p>
+    ${b.status==="approved"?`<div class="adm-acts"><a class="btn btn-navy" href="#biz-${esc(b.slug)}">View my public page</a><button class="btn btn-ghost" type="button" data-copy="${esc(link)}">${icon("i-copy")} Copy my page link</button></div>`:""}
+    ${b.verified?`<span class="vbadge" style="justify-self:start">${icon("i-check")} ServiceLink Verified</span>`:""}
+    ${pendingHelp?`<div class="info" style="margin:0"><svg class="ic"><use href="#i-spark"/></svg><span>You asked for help with ${esc(pendingHelp.join(", "))}. <a href="${waLink("Hello ServiceLink, I have just registered "+b.name+" on ServiceLink. I would like help with: "+pendingHelp.join(", ")+".")}" target="_blank" rel="noopener">Message ServiceLink on WhatsApp</a> to get a quote.</span></div>`:""}
+  </div>
+
+  <div class="dash-card"><h2>Business details</h2>
+    <form class="form" id="dForm" novalidate>
+      <div class="f2"><div class="fld"><label for="d-name">Business name *</label><input id="d-name" required maxlength="80" value="${esc(b.name)}"><span class="err">Add your business name.</span></div>
+      <div class="fld"><label for="d-cat">Category *</label><select id="d-cat" required>${svcOptions}</select><span class="err">Choose a category.</span></div></div>
+      <div class="f2"><div class="fld"><label for="d-area">Area *</label><input id="d-area" list="areas" required maxlength="60" value="${esc(b.area)}"><span class="err">Add your area.</span></div>
+      <div class="fld"><label for="d-phone">Phone *</label><input id="d-phone" type="tel" required value="${esc(b.phone)}"><span class="err">Add a Zambian phone number.</span></div></div>
+      <div class="f2"><div class="fld"><label for="d-wa">WhatsApp <em>(if different)</em></label><input id="d-wa" type="tel" value="${esc(b.whatsapp||"")}"><span class="err">Check this number.</span></div>
+      <div class="fld"><label for="d-email">Email</label><input id="d-email" type="email" maxlength="120" value="${esc(b.email||"")}"><span class="err">Add a valid email.</span></div></div>
+      <div class="fld"><label for="d-social">Facebook or Instagram page</label><input id="d-social" maxlength="200" value="${esc(b.social||"")}"></div>
+      <div class="fld"><label for="d-about">About your business</label><textarea id="d-about" maxlength="1200">${esc(b.about||"")}</textarea></div>
+      <p class="form-msg" id="dMsg" hidden></p>
+      <button class="btn btn-navy" type="submit" style="justify-self:start">Save details</button>
+    </form>
+  </div>
+
+  <div class="dash-card"><h2>Services and prices</h2>
+    <div id="svcList">${svcs.length?"":`<p class="hint">Add the services or products customers can ask you about.</p>`}${svcs.map(s=>`<div class="svc-row"><div style="min-width:0"><b>${esc(s.name)}</b><span class="small">${s.price_from!=null?"From "+kw(s.price_from)+" · ":""}${s.duration_minutes} min${s.active?"":" · hidden"}</span></div><button class="mini" style="color:var(--ink);border-color:var(--line)" type="button" data-svc-toggle="${s.id}" data-on="${s.active}">${s.active?"Hide":"Show"}</button><button class="mini" style="color:#8A2323;border-color:#F2C2C2" type="button" data-svc-del="${s.id}">Delete</button></div>`).join("")}</div>
+    <form class="form" id="sForm" novalidate style="border-top:1px solid var(--line);padding-top:14px">
+      <div class="f2"><div class="fld"><label for="sv-name">Service or product *</label><input id="sv-name" required maxlength="80" placeholder="e.g. Geyser installation"><span class="err">Add a name.</span></div>
+      <div class="fld"><label for="sv-price">Starting price (K)</label><input id="sv-price" inputmode="decimal" placeholder="e.g. 800"></div></div>
+      <div class="f2"><div class="fld"><label for="sv-dur">How long it takes</label><select id="sv-dur"><option value="30">30 minutes</option><option value="60" selected>1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option><option value="180">3 hours</option><option value="240">4 hours</option><option value="480">Full day</option></select></div>
+      <div class="fld"><label for="sv-desc">Short description</label><input id="sv-desc" maxlength="400" placeholder="Optional"></div></div>
+      <p class="form-msg" id="sMsg" hidden></p>
+      <button class="btn btn-ghost" type="submit" style="justify-self:start">Add service</button>
+    </form>
+  </div>
+
+  <div class="dash-card"><h2>Working hours</h2>
+    <p class="hint" id="hHint">${hasHours?"Customers can only request times when you are open.":"Not saved yet. Until you save your hours, customers can request any day or time."}</p>
+    <form class="form" id="hForm" novalidate>
+      ${DAY_ORDER.map(d=>{const x=hmap[d]||(hasHours?{closed:true}:defH(d));const open=!x.closed;return `<div class="hours-row" data-day="${d}"><span class="day">${DAYS[d]}</span><span class="checks"><label><input type="checkbox" data-open ${open?"checked":""}> Open</label></span><input type="time" data-from value="${t5(x.opens)||"08:00"}" aria-label="${DAYS[d]} opens" ${open?"":"disabled"}><input type="time" data-to value="${t5(x.closes)||"17:00"}" aria-label="${DAYS[d]} closes" ${open?"":"disabled"}></div>`;}).join("")}
+      <p class="form-msg" id="hMsg" hidden></p>
+      <button class="btn btn-navy" type="submit" style="justify-self:start">Save working hours</button>
+    </form>
+  </div>
+
+  <div class="dash-card"><h2>Bookings</h2><p class="hint">Online booking requests will appear here when booking opens on ServiceLink. Until then, customers contact you directly by phone or WhatsApp.</p></div>`;
+  $("#d-cat").value=b.category;if($("#d-cat").value!==b.category){$("#d-cat").insertAdjacentHTML("beforeend",`<option>${esc(b.category)}</option>`);$("#d-cat").value=b.category;}
+  $("#dForm").onsubmit=async e=>{e.preventDefault();if(!check(e.target))return;const btn=e.target.querySelector("button[type=submit]");busyBtn(btn,true,"Saving…");
+    const {data,error}=await sb.from("businesses").update({name:val("#d-name"),category:$("#d-cat").value,area:val("#d-area"),phone:val("#d-phone"),whatsapp:val("#d-wa")||null,email:val("#d-email")||null,social:val("#d-social")||null,about:val("#d-about")||null}).eq("id",b.id).select().single();
+    busyBtn(btn,false);if(error){setMsg($("#dMsg"),friendlyErr(error));return;}myBiz=data;setMsg($("#dMsg"),"Saved.",true);toast("Details saved");loadListings();};
+  $("#sForm").onsubmit=async e=>{e.preventDefault();if(!check(e.target))return;const btn=e.target.querySelector("button[type=submit]");busyBtn(btn,true,"Adding…");
+    const p=parseFloat(val("#sv-price").replace(/[^0-9.]/g,""));
+    const {error}=await sb.from("services").insert({business_id:b.id,name:val("#sv-name"),price_from:isFinite(p)?p:null,duration_minutes:+$("#sv-dur").value,description:val("#sv-desc")||null,sort:svcs.length});
+    busyBtn(btn,false);if(error){setMsg($("#sMsg"),friendlyErr(error));return;}toast("Service added");renderDashboard();loadListings();};
+  box.querySelectorAll("[data-svc-del]").forEach(x=>x.onclick=async()=>{if(x.dataset.sure!=="1"){x.dataset.sure="1";x.textContent="Tap again to delete";return;}
+    const {error}=await sb.from("services").delete().eq("id",x.dataset.svcDel);if(error){toast(friendlyErr(error));return;}toast("Service deleted");renderDashboard();loadListings();});
+  box.querySelectorAll("[data-svc-toggle]").forEach(x=>x.onclick=async()=>{const {error}=await sb.from("services").update({active:x.dataset.on!=="true"}).eq("id",x.dataset.svcToggle);if(error){toast(friendlyErr(error));return;}renderDashboard();loadListings();});
+  $("#hForm").addEventListener("change",e=>{const r=e.target.closest(".hours-row");if(r&&e.target.matches("[data-open]")){r.querySelectorAll("input[type=time]").forEach(i=>i.disabled=!e.target.checked);}});
+  $("#hForm").onsubmit=async e=>{e.preventDefault();const rows=[];let bad=null;
+    $$("#hForm .hours-row").forEach(r=>{const d=+r.dataset.day,open=r.querySelector("[data-open]").checked,f=r.querySelector("[data-from]").value,t=r.querySelector("[data-to]").value;
+      if(open&&(!f||!t||t<=f))bad=DAYS[d];rows.push(open?{business_id:b.id,weekday:d,opens:f,closes:t,closed:false}:{business_id:b.id,weekday:d,opens:null,closes:null,closed:true});});
+    if(bad){setMsg($("#hMsg"),`Check ${bad}: the closing time must be after the opening time.`);return;}
+    const btn=e.target.querySelector("button[type=submit]");busyBtn(btn,true,"Saving…");
+    const {error}=await sb.from("business_hours").upsert(rows,{onConflict:"business_id,weekday"});busyBtn(btn,false);
+    if(error){setMsg($("#hMsg"),friendlyErr(error));return;}setMsg($("#hMsg"),"Working hours saved.",true);$("#hHint").textContent="Customers can only request times when you are open.";toast("Working hours saved");loadListings();};
+}
+
+/* ----- admin dashboard ----- */
+async function renderAdmin(){
+  const box=$("#adminBox");
+  if(!sb){box.innerHTML=phead("Admin","Unavailable","");return;}
+  if(!authReady){box.innerHTML=phead("Admin dashboard","Loading…","");return;}
+  if(!session){needSignIn(box,"Admin dashboard","Sign in as <span class='gold'>admin.</span>","Use the ServiceLink administrator account.","admin");return;}
+  if(!me||me.role!=="admin"){box.innerHTML=phead("Admin dashboard","Administrators <span class='gold'>only.</span>","This account doesn't have admin access.");return;}
+  box.innerHTML=phead("Admin dashboard","Run <span class='gold'>ServiceLink.</span>","Approve businesses, manage featured placements and keep an eye on activity.")+
+   `<div class="sec" style="padding-top:32px"><div class="wrap" style="display:grid;gap:22px"><div class="tiles" id="admTiles"><p class="hint">Loading…</p></div><div class="tabs" id="admTabs" role="group" aria-label="Filter businesses"></div><div id="admList" style="display:grid;gap:12px"><p class="hint">Loading businesses…</p></div></div></div>`;
+  let stats={},list=[];
+  try{
+    const [s,l]=await Promise.all([sb.rpc("admin_stats"),sb.from("businesses").select("*, services(name,price_from,active), owner:profiles(full_name,phone)").order("created_at",{ascending:false})]);
+    if(s.error)throw s.error;if(l.error)throw l.error;stats=s.data||{};list=l.data||[];
+  }catch(err){$("#admList").innerHTML=`<p class="form-msg">${esc(friendlyErr(err))}</p>`;$("#admTiles").innerHTML="";return;}
+  const bz=stats.businesses||{},bk=stats.bookings||{};
+  const tile=(n,l)=>`<div class="tile"><span>${l}</span><b>${Number(n||0).toLocaleString("en-US")}</b></div>`;
+  $("#admTiles").innerHTML=tile(bz.pending,"Awaiting approval")+tile(bz.approved,"Live businesses")+tile(Object.values(bk).reduce((a,c)=>a+c,0),"Booking requests")+tile((bk.confirmed||0)+(bk.completed||0),"Confirmed + completed")+tile(stats.customers,"Customers");
+  const groups={pending:list.filter(x=>x.status==="pending"),approved:list.filter(x=>x.status==="approved"),other:list.filter(x=>x.status==="rejected"||x.status==="suspended")};
+  $("#admTabs").innerHTML=[["pending","Awaiting approval"],["approved","Live"],["other","Not approved / suspended"]].map(([k,l])=>`<button type="button" data-at="${k}" aria-pressed="${adminTab===k}">${l} (${groups[k].length})</button>`).join("");
+  $("#admTabs").onclick=e=>{const t=e.target.closest("[data-at]");if(!t)return;adminTab=t.dataset.at;renderAdmin();};
+  const now=Date.now();
+  const rows=groups[adminTab];
+  $("#admList").innerHTML=rows.length?rows.map(x=>{
+    const feat=x.featured_until&&new Date(x.featured_until).getTime()>now;
+    const w=waNum(x.whatsapp||x.phone), owner=x.owner||{};
+    return `<article class="adm-row" data-id="${x.id}">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start"><div style="min-width:0"><h3 style="font-size:1.25rem">${esc(x.name)}</h3><span class="small">${esc(x.category)} · ${esc(x.area)} · registered ${fmtDay(x.created_at)}</span></div>
+      <div class="badges">${pill(x.status)}${x.verified?`<span class="vbadge">${icon("i-check")} Verified</span>`:""}${feat?`<span class="fbadge">Featured to ${fmtDay(x.featured_until)}</span>`:""}${x.plan==="premium"?`<span class="fbadge">Premium</span>`:""}</div></div>
+      <div class="kv"><div><span>Owner</span><br>${esc(owner.full_name||"-")} ${owner.phone?"· "+esc(owner.phone):""}</div><div><span>Business phone</span><br>${esc(x.phone)}${x.whatsapp?" · WA "+esc(x.whatsapp):""}</div><div><span>Email</span><br>${esc(x.email||"-")}</div><div><span>Social</span><br>${esc(x.social||"-")}</div></div>
+      ${x.about?`<p class="small" style="color:var(--ink)">${esc(x.about)}</p>`:""}
+      <p class="small"><b>Services:</b> ${(x.services||[]).length?(x.services||[]).map(s=>esc(s.name)+(s.price_from!=null?" ("+kw(s.price_from)+")":"")).join(", "):"none added yet"}</p>
+      ${x.admin_note?`<p class="small"><b>Note:</b> ${esc(x.admin_note)}</p>`:""}
+      <div class="adm-acts">
+        ${x.status!=="approved"?`<button class="btn btn-gold" type="button" data-act="approve">${icon("i-check")} Approve</button>`:""}
+        ${x.status==="pending"?`<button class="btn btn-ghost" type="button" data-act="reject">Not approve</button>`:""}
+        ${x.status==="approved"?`<button class="btn btn-ghost" type="button" data-act="verify">${x.verified?"Remove verified":"Mark verified"}</button><button class="btn btn-ghost" type="button" data-act="${feat?"unfeature":"feature"}">${feat?"Remove featured":"Feature 30 days"}</button><button class="btn btn-ghost" type="button" data-act="plan">${x.plan==="premium"?"Set to free":"Set to premium"}</button><a class="btn btn-ghost" href="#biz-${esc(x.slug)}">View page</a><button class="btn btn-ghost" type="button" data-act="suspend">Suspend</button>`:""}
+        ${w?`<a class="btn btn-wa" href="https://wa.me/${w}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}
+      </div>
+      <div class="reject-box" hidden><div class="fld"><label>Reason (the business will see this)</label><input data-note maxlength="200" placeholder="e.g. Please add a working phone number"></div><div class="adm-acts"><button class="btn btn-navy" type="button" data-act="reject-go">Confirm</button><button class="btn btn-ghost" type="button" data-act="reject-cancel">Cancel</button></div></div>
+    </article>`;}).join(""):`<div class="empty-biz"><p>Nothing here right now.</p></div>`;
+  $("#admList").onclick=async e=>{
+    const a=e.target.closest("[data-act]");if(!a)return;const row=a.closest(".adm-row"),id=row.dataset.id,x=list.find(y=>y.id===id),act=a.dataset.act;
+    if(act==="reject"||act==="suspend"){row.querySelector(".reject-box").hidden=false;row.querySelector(".reject-box").dataset.mode=act;row.querySelector("[data-note]").focus();return;}
+    if(act==="reject-cancel"){row.querySelector(".reject-box").hidden=true;return;}
+    const p={p_business:id};
+    if(act==="approve")p.p_status="approved";
+    if(act==="reject-go"){p.p_status=row.querySelector(".reject-box").dataset.mode==="suspend"?"suspended":"rejected";p.p_note=row.querySelector("[data-note]").value.trim()||null;}
+    if(act==="verify")p.p_verified=!x.verified;
+    if(act==="feature")p.p_featured_days=30;
+    if(act==="unfeature")p.p_featured_days=0;
+    if(act==="plan")p.p_plan=x.plan==="premium"?"free":"premium";
+    busyBtn(a,true,"Saving…");
+    const {error}=await sb.rpc("admin_update_business",p);
+    if(error){busyBtn(a,false);toast(friendlyErr(error));return;}
+    toast({approve:"Approved. The listing is now live.",verify:"Updated",feature:"Featured for 30 days",unfeature:"Featured placement removed",plan:"Plan updated"}[act]||"Updated");
+    renderAdmin();loadListings();
+  };
+}
+
+/* ----- directory from the database ----- */
+function toListing(r){
+  const svc=(r.services||[]).filter(s=>s.active!==false).sort((a,b)=>(a.sort||0)-(b.sort||0));
+  const prices=svc.map(s=>s.price_from).filter(p=>p!=null);
+  const cat=r.category||"Local business";
+  return {id:r.id,name:r.name,slug:r.slug,cat,sector:(ALLCATS.find(c=>c.name.toLowerCase()===cat.toLowerCase())||{}).sector||"other",
+    area:r.area||"",phone:r.phone||"",wa:r.whatsapp||r.phone||"",email:r.email||"",about:r.about||"",social:r.social||"",
+    verified:!!r.verified,featured:!!(r.featured_until&&new Date(r.featured_until).getTime()>Date.now()),premium:r.plan==="premium",
+    svcList:svc,services:svc.map(s=>s.name).join(", "),price:prices.length?"From "+kw(Math.min.apply(null,prices)):"",
+    hoursList:(r.business_hours||[]).slice().sort((a,b)=>DAY_ORDER.indexOf(a.weekday)-DAY_ORDER.indexOf(b.weekday)),hours:""};
+}
+function loadListings(){
+  if(!sb){LISTINGS=[];LOAD_STATE="error";renderBiz();renderRecent();if(currentView==="biz")renderProfile();return;}
+  sb.from("businesses").select("id,name,slug,category,area,phone,whatsapp,email,about,social,verified,featured_until,plan,created_at,services(id,name,price_from,duration_minutes,description,active,sort),business_hours(weekday,opens,closes,closed)")
+    .eq("status","approved").order("created_at",{ascending:false})
+    .then(({data,error})=>{if(error)throw error;LISTINGS=(data||[]).map(toListing).sort((a,b)=>(b.featured-a.featured)||(b.premium-a.premium));LOAD_STATE="ready";})
+    .catch(()=>{LISTINGS=LISTINGS||[];LOAD_STATE="error";})
+    .finally(()=>{renderBiz();renderRecent();if(currentView==="biz")renderProfile();if(window.ScrollTrigger)ScrollTrigger.refresh();});
+}
+
 /* ---------- routing ---------- */
-const VIEWS=["home","find","solutions","shop","join","about"];
-const WORD={home:"Discover.",find:"Discover.",solutions:"Grow.",shop:"Plan.",join:"Grow.",about:"Connect."};
+const VIEWS=["home","find","solutions","shop","join","about","biz","account","dashboard","admin"];
+const WORD={home:"Discover.",find:"Discover.",solutions:"Grow.",shop:"Plan.",join:"Grow.",about:"Connect.",biz:"Connect.",account:"Connect.",dashboard:"Grow.",admin:"Connect."};
 let currentView=null, busy=false;
 function show(v){
   $$(".view").forEach(s=>s.hidden=s.dataset.view!==v);
@@ -1197,7 +1734,9 @@ function show(v){
   if(v==="find")renderCats();
   syncTray();
   window.scrollTo({top:0,left:0,behavior:"instant"});
-  document.title=v==="home"?"ServiceLink Zambia":({find:"Find a business",solutions:"Business solutions",shop:"2027 diaries",join:"List your business",about:"About"}[v])+" · ServiceLink Zambia";
+  document.title=v==="home"?"ServiceLink Zambia":({find:"Find a business",solutions:"Business solutions",shop:"2027 diaries",join:"List your business",about:"About",biz:"Business",account:"My account",dashboard:"Business dashboard",admin:"Admin"}[v])+" · ServiceLink Zambia";
+  if(v==="biz")renderProfile();
+  if(prerendered===v)prerendered=null;else renderView(v);
   if(HAS_G&&window.ScrollTrigger){ScrollTrigger.refresh();}
   revealIn(v);
   if(v==="home")globe&&globe.wake();else globe&&globe.sleep();
@@ -1206,8 +1745,12 @@ function route(){
   let h=(location.hash||"").slice(1);
   if(h==="contact"){if(currentView==null)show("home");$("#contact").scrollIntoView({behavior:RM?"auto":"smooth"});return;}
   if(h==="quoteSec"){return;}
-  const v=VIEWS.includes(h)?h:"home";
-  if(v===currentView)return;
+  const isBiz=/^biz-/.test(h);
+  if(isBiz)curBiz=h.slice(4);
+  const v=isBiz?"biz":(VIEWS.includes(h)&&h!=="biz"?h:"home");
+  if(v===currentView){if(v==="biz"){renderProfile();window.scrollTo({top:0,left:0,behavior:"instant"});}return;}
+  if(v==="biz")renderProfile();
+  if(["account","dashboard","admin","join"].includes(v)&&currentView!==null&&HAS_G&&!RM){prerendered=v;renderView(v);}
   closeDrawer();
   if(currentView===null||!HAS_G||RM){show(v);return;}
   if(busy){show(v);return;}
@@ -1433,9 +1976,11 @@ function micro(){
 
 /* ---------- boot ---------- */
 renderCats(); shopSync(); joinSync();
+renderJoinGate();refreshMe();
+loadListings();
 globe=initGlobe();
 const startView=(location.hash||"").slice(1);
-show(VIEWS.includes(startView)?startView:"home");
+if(/^biz-/.test(startView)){curBiz=startView.slice(4);show("biz");}else show(VIEWS.includes(startView)&&startView!=="biz"?startView:"home");
 if(startView==="contact")$("#contact").scrollIntoView();
 intro(); motion(); micro(); revealIn(currentView);
 window.addEventListener("load",()=>{if(window.ScrollTrigger)ScrollTrigger.refresh();});
