@@ -290,6 +290,22 @@ p{margin:0}
 .pill.approved{background:#E3F4EA;color:#1F6B40}
 .pill.rejected{background:#FCE4E4;color:#8A2323}
 .pill.suspended{background:#ECEEF3;color:#4A5568}
+.hint{color:var(--muted);font-size:.92rem}
+.stars{display:inline-flex;gap:1px;line-height:1}.stars .star{color:#D5D9E2;font-size:1rem}.stars .star.on{color:var(--gold)}
+.rating{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;color:var(--ink)}.rating span{color:var(--muted)}
+.phead .rating,.phead .rating span{color:var(--on-navy)}
+.star-pick{display:flex;gap:4px}.star-pick button{border:0;background:none;font-size:2rem;line-height:1;color:#D5D9E2;cursor:pointer;padding:2px}.star-pick button.on{color:var(--gold)}
+.rv-form{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:12px}.rv-form textarea{min-height:70px;border:1.5px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.rv{display:grid;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}.rv:last-child{border-bottom:0}.rv p{margin:0}
+.plan-grid{display:grid;gap:10px}.plan-opt .p{margin-left:auto;font-weight:800;color:var(--navy-900);white-space:nowrap}
+.pay-steps{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:8px}.pay-steps ol{margin:0;padding-left:20px;display:grid;gap:10px}
+.pay-nums{display:grid;gap:8px;margin-top:8px}.pay-num{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.pay-num span{color:var(--muted);font-size:.85rem;min-width:96px}.pay-num b{font-size:1.1rem;letter-spacing:.02em;user-select:all}.pay-num .mini{margin-left:auto}
+.pill.pay-submitted{background:#FFF4D6;color:#7A5300}.pill.pay-confirmed{background:#E3F4EA;color:#1F6B40}.pill.pay-rejected{background:#FDE8E8;color:#9B1C1C}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}.gal img,.gal-item img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;display:block}
+.gal-item{display:grid;gap:6px}.gal a{display:block}
+.biz.prem{border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(217,169,46,.12)}
+.pbadge{display:inline-flex;align-items:center;font-size:.7rem;font-weight:700;border-radius:999px;padding:3px 9px;background:linear-gradient(135deg,#F3D98F,#D9A92E);color:var(--navy-900)}
+.legal{max-width:760px;display:grid;gap:14px}.legal h2{font-size:1.35rem;margin-top:14px}.legal p,.legal li{line-height:1.65}.legal ul{padding-left:20px;display:grid;gap:6px;margin:0}
 .fbadge{display:inline-flex;align-items:center;font-size:.7rem;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--navy-900);color:var(--gold-200)}
 .dash{display:grid;gap:18px}
 .dash-card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px;display:grid;gap:14px;min-width:0}
@@ -674,17 +690,17 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <span class="eyebrow">Using ServiceLink</span>
-        <h2 class="h2">From request to done in <span class="serif">four steps.</span></h2>
+        <h2 class="h2">From search to booked in <span class="serif">four steps.</span></h2>
       </div>
       <div class="steps" id="steps">
         <div class="steps-line"><i id="stepsFill"></i></div>
-        <div class="step"><span class="n">1</span><h3>Say what you need</h3><p>Choose a category and describe the service or product you want. It takes about a minute.</p></div>
-        <div class="step"><span class="n">2</span><h3>Get matched</h3><p>ServiceLink replies on WhatsApp with local businesses that can help.</p></div>
-        <div class="step"><span class="n">3</span><h3>Agree the details</h3><p>Talk to the business, agree the price and confirm the date or delivery.</p></div>
-        <div class="step"><span class="n">4</span><h3>Leave a review</h3><p>Afterwards, tell us how it went. Reviews help the next customer choose well.</p></div>
+        <div class="step"><span class="n">1</span><h3>Find a business</h3><p>Search by category or area and compare approved local businesses, their services and prices.</p></div>
+        <div class="step"><span class="n">2</span><h3>Book online or message</h3><p>Pick a service, date and time and send a booking request, or contact the business on WhatsApp or by phone.</p></div>
+        <div class="step"><span class="n">3</span><h3>The business confirms</h3><p>Your booking is confirmed only when the business accepts it. Track it in My account and pay the business directly.</p></div>
+        <div class="step"><span class="n">4</span><h3>Leave a review</h3><p>Once the job is completed, rate the business. Reviews come only from real bookings, so the next customer can choose well.</p></div>
       </div>
       <div style="margin-top:44px;display:flex;gap:12px;flex-wrap:wrap" data-reveal>
-        <a class="btn btn-gold" href="#find" data-magnetic>Start a request <svg class="ic arr"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-gold" href="#find" data-magnetic>Find a business <svg class="ic arr"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
@@ -1010,6 +1026,53 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
 </section>
 
 <!-- ============ ABOUT ============ -->
+<section class="view" id="v-privacy" data-view="privacy" hidden>
+  <div class="phead"><div class="phead-orb"></div><div class="wrap">
+    <span class="eyebrow">Privacy and terms</span>
+    <h1>How ServiceLink <span class="gold">works with you.</span></h1>
+    <p class="lead">Last updated 7 November 2026. This page explains what information ServiceLink keeps, why, and the rules for using the platform.</p>
+  </div></div>
+  <div class="sec" style="padding-top:36px"><div class="wrap legal">
+    <h2>1. Who we are</h2>
+    <p>ServiceLink is run by ServiceLink Business Solutions, 37112 Rockfield Chalala, Lusaka, Zambia. You can contact us on WhatsApp 076 492 2544, by phone on 097 965 0844, or by email at servicelinkzm@gmail.com.</p>
+    <h2>2. Information we keep</h2>
+    <ul>
+      <li><b>Your account:</b> your name, phone number, email address and password (the password is stored in scrambled form and we cannot read it).</li>
+      <li><b>Business listings:</b> business name, category, area, contact numbers, email, description, social page, services, prices, working hours, logo and photos.</li>
+      <li><b>Bookings:</b> the service, date and time, your name, phone number, any notes you add, and the booking's status.</li>
+      <li><b>Reviews:</b> your star rating and comment. Only your first name and the first letter of your surname are shown publicly.</li>
+      <li><b>Payments for plans:</b> the plan, amount, mobile money network, the number paid from and the transaction ID. We never ask for or store your mobile money PIN.</li>
+    </ul>
+    <h2>3. Why we use it</h2>
+    <p>We use this information to run your account, show business listings, send booking requests to businesses, let businesses accept or decline them, publish reviews, switch on paid plans, prevent misuse, and contact you about your account or bookings.</p>
+    <h2>4. Who can see it</h2>
+    <ul>
+      <li>Anyone can see approved business listings and published reviews.</li>
+      <li>When you book, the business sees your name, phone number, the booking details and your notes, so it can serve you.</li>
+      <li>ServiceLink administrators can see account, booking and payment records to run and protect the platform.</li>
+      <li>We do not sell your information. We share it only where the law requires us to.</li>
+    </ul>
+    <h2>5. Where it is stored</h2>
+    <p>ServiceLink's information is held by our database provider, Supabase, on secure servers outside Zambia. Access is protected by passwords and security rules that limit each person to the information they are allowed to see.</p>
+    <h2>6. How long we keep it</h2>
+    <p>We keep account and listing information while your account is open. Booking, review and payment records are kept for up to five years for records and to resolve disputes, then deleted. You can ask us to delete your account at any time.</p>
+    <h2>7. Your rights</h2>
+    <p>Under Zambia's Data Protection Act No. 3 of 2021 you can ask to see the information we hold about you, ask us to correct it, object to how we use it, or ask us to delete it. Send your request to servicelinkzm@gmail.com or on WhatsApp 076 492 2544 and we will reply within 30 days.</p>
+
+    <h2>8. Terms of use</h2>
+    <ul>
+      <li><b>ServiceLink connects you with businesses.</b> The service or product is agreed between you and the business. ServiceLink is not a party to that agreement and is not responsible for the work done, its price or its quality.</li>
+      <li><b>Payment for services is made directly to the business.</b> ServiceLink does not collect payment for services booked on the platform.</li>
+      <li><b>Bookings are requests</b> until the business accepts them. Requests that are not answered within 48 hours expire.</li>
+      <li><b>Businesses</b> must give true information, hold any licences their work needs, and keep their prices and hours up to date. ServiceLink checks listings before approving them and may suspend or remove a listing at any time.</li>
+      <li><b>Reviews</b> can only be left after a completed booking and must be honest. ServiceLink may hide reviews that are abusive, false or unrelated to the service.</li>
+      <li><b>Featured placement and Premium plans</b> are paid by mobile money at the price shown before you pay. A plan starts when ServiceLink confirms the payment and runs for the number of days shown. Payments are not refundable once a plan has started, except where the law requires.</li>
+      <li>Do not use ServiceLink to send spam, mislead people or break the law. We may close accounts that do.</li>
+    </ul>
+    <p class="small">Questions about this page? Contact servicelinkzm@gmail.com.</p>
+  </div></div>
+</section>
+
 <section class="view" id="v-about" data-view="about" hidden>
   <div class="phead"><div class="phead-orb"></div><div class="wrap">
     <span class="eyebrow">About ServiceLink</span>
@@ -1075,7 +1138,7 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
       <div><div class="logo-tile"><span class="logo-bg" role="img" aria-label="ServiceLink logo" style="display:block;width:100%;aspect-ratio:158/200"></span></div><p style="max-width:36ch">A local business discovery and promotion platform connecting people with businesses, products and service providers across Lusaka.</p></div>
       <div><h4>Customers</h4><a href="#find">Find a business</a><a href="#find">Send a request</a><a href="#shop">2027 diaries</a></div>
       <div><h4>Businesses</h4><a href="#join">List your business</a><a href="#solutions">Business solutions</a><a href="#solutions">Request a quote</a></div>
-      <div><h4>ServiceLink</h4><a href="#about">About</a><a href="#contact">Contact</a><a href="https://www.instagram.com/servicelinkzm/" target="_blank" rel="noopener">Instagram</a></div>
+      <div><h4>ServiceLink</h4><a href="#about">About</a><a href="#contact">Contact</a><a href="#privacy">Privacy and terms</a><a href="https://www.instagram.com/servicelinkzm/" target="_blank" rel="noopener">Instagram</a></div>
     </div>
     <div class="big-word" aria-hidden="true">Service<b>Link</b></div>
     <div class="foot-bottom"><span>© 2026 ServiceLink Business Solutions · 37112 Rockfield Chalala, Lusaka, Zambia</span><span>Discover. Connect. Grow.</span></div>
@@ -1236,9 +1299,10 @@ function avatar(b,cls){const u=b.logo||b.logo_url||"";return u?`<img class="${cl
 function bizMsg(b){return `Hello ${b.name}, I found your business on ServiceLink (${SITE_URL}). I would like to ask about your services.`;}
 function bizCard(b){
   const w=waNum(b.wa), t=waNum(b.phone||b.wa);
-  return `<article class="biz spot" data-tilt>
+  return `<article class="biz spot${b.premium?" prem":""}" data-tilt>
    <div class="biz-top">${avatar(b,"biz-av")}<div><h3>${esc(b.name)}</h3><span class="where">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div>
-   <div class="badges">${b.featured?`<span class="fbadge">Featured</span>`:""}${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span></div>
+   <div class="badges">${b.premium?`<span class="pbadge">Premium</span>`:""}${b.featured?`<span class="fbadge">Featured</span>`:""}${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span></div>
+   ${ratingLine(b)}
    ${b.about||b.services?`<p>${esc(b.about||b.services)}</p>`:""}
    <div class="biz-acts">${w?`<a class="btn btn-wa" href="https://wa.me/${w}?text=${encodeURIComponent(bizMsg(b))}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}${t?`<a class="btn btn-navy" href="tel:+${t}">${icon("i-phone")} Call</a>`:""}</div>
    <a class="biz-more" href="#biz-${b.slug}">View business page ${icon("i-arrow")}</a></article>`;
@@ -1277,7 +1341,7 @@ function renderProfile(){
     <a class="back" href="#find">${icon("i-arrow")} All businesses</a>
     <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${avatar(b,"ph-av")}${b.verified?`<img src="${BADGE_SM}" alt="ServiceLink approved service provider badge" style="width:84px;height:84px">`:""}
     <div style="display:grid;gap:10px;min-width:0"><h1 style="font-size:clamp(2.2rem,6vw,4.2rem);overflow-wrap:anywhere">${esc(b.name)}</h1>
-    <div class="badges">${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span><span class="catbadge">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div></div>
+    <div class="badges">${b.premium?`<span class="pbadge">Premium</span>`:""}${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span><span class="catbadge">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div>${ratingLine(b)}</div></div>
   </div></div>
   <div class="sec" style="padding-top:36px"><div class="wrap prof">
     <div style="display:grid;gap:16px">
@@ -1285,6 +1349,8 @@ function renderProfile(){
       ${b.about?`<div class="prof-card"><h2>About</h2><p class="pre">${esc(b.about)}</p></div>`:""}
       ${(b.svcList||[]).length?`<div class="prof-card"><h2>Services and prices</h2><div class="svc-list-pub">${b.svcList.map(s=>`<div><span><b>${esc(s.name)}</b>${s.description?`<small>${esc(s.description)}</small>`:""}</span><b style="white-space:nowrap">${s.price_from!=null?"From "+kw(s.price_from):"Ask for price"}</b></div>`).join("")}</div></div>`:""}
       ${(b.hoursList||[]).length?`<div class="prof-card"><h2>Working hours</h2><div class="svc-list-pub">${b.hoursList.map(h=>`<div><span>${DAYS[h.weekday]}</span><b>${h.closed?"Closed":String(h.opens).slice(0,5)+" – "+String(h.closes).slice(0,5)}</b></div>`).join("")}</div></div>`:""}
+      ${b.premium?`<div class="prof-card" hidden><h2>Photos</h2><div class="gal" id="pubGallery"></div></div>`:""}
+      <div class="prof-card"><h2>Reviews</h2>${b.ratingCount?`<p>${ratingLine(b)}</p>`:""}<div id="pubReviews"><p class="hint">Loading reviews…</p></div></div>
       ${social?`<div class="prof-card"><h2>Find them online</h2><div class="numrow" style="border:0;padding:0"><span>Social page</span>${social}</div></div>`:""}
     </div>
     <aside class="prof-card contact-card">
@@ -1301,7 +1367,7 @@ function renderProfile(){
     </aside>
   </div></div>`;
   document.title=b.name+" · ServiceLink Zambia";
-  wireBooking(b);
+  wireBooking(b);loadPublicExtras(b);
 }
 const today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
 $("#r-date").min=today.toISOString().slice(0,10);
@@ -1514,7 +1580,7 @@ function renderAccount(){
     <div class="fld"><label for="a-pass">Password *</label><input id="a-pass" type="password" required autocomplete="${up?"new-password":"current-password"}"><span class="err">Use at least 8 characters.</span></div>
     <p class="form-msg" id="authMsg" hidden></p>
     <button class="btn btn-navy" type="submit">${up?"Create my account":"Sign in"}</button>
-    ${up?`<p class="small">ServiceLink stores your name, phone and email to run your account and bookings.</p>`:`<button class="link" type="button" id="forgot" style="justify-self:start">Forgot your password?</button>`}
+    ${up?`<p class="small">By creating an account you agree to the <a href="#privacy" style="text-decoration:underline">privacy notice and terms</a>. ServiceLink stores your name, phone and email to run your account and bookings.</p>`:`<button class="link" type="button" id="forgot" style="justify-self:start">Forgot your password?</button>`}
   </form>`;
   box.querySelectorAll("[data-am]").forEach(b=>b.onclick=()=>{acctMode=b.dataset.am;renderAccount();});
   box.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{acctType=b.dataset.t;box.querySelectorAll("[data-t]").forEach(x=>x.setAttribute("aria-pressed",x===b));});
@@ -1615,11 +1681,19 @@ async function renderDashboard(){
     <div class="adm-acts"><button class="btn btn-gold" type="button" data-cert>${icon("i-check")} Download certificate (PDF)</button><a class="btn btn-ghost" href="${BADGE_FILE}" download="ServiceLink-Approved-Badge.png">Download badge</a></div>
     <p class="small">Certificate no. <b>${esc(certNo(b))}</b> · valid for one year from your approval date.</p></div>`:""}
 
+  <div class="dash-card"><h2>Promote your business</h2>
+    <p class="hint">Featured businesses are shown first in the directory and on the home page. Premium adds a gold frame, priority in search and a photo gallery.</p>
+    <div id="promoteBox" style="display:grid;gap:14px"><p class="hint">Loading…</p></div></div>
+
   <div class="dash-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Bookings</h2></div>
     <p class="hint">A booking is only confirmed when you accept it. Requests you don't answer within 48 hours expire.</p>
     <div class="tabs" id="bkTabs" role="group" aria-label="Bookings" style="justify-self:start"></div>
     <div id="bkList" style="display:grid;gap:10px"><p class="hint">Loading bookings…</p></div>
   </div>
+
+  <div class="dash-card"><h2>Your reviews</h2><div id="bizRv"><p class="hint">Loading…</p></div></div>
+
+  <div class="dash-card"><h2>Photo gallery <span class="pbadge" style="vertical-align:middle">Premium</span></h2><div id="galBox" style="display:grid;gap:12px"><p class="hint">Loading…</p></div></div>
 
   <div class="dash-card"><h2>Business details</h2>
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">${avatar(b,"ph-av")}<div style="display:grid;gap:8px;flex:1;min-width:200px">
@@ -1669,7 +1743,7 @@ async function renderDashboard(){
       <button class="btn btn-ghost" type="submit" style="justify-self:start">Add closed day</button>
     </form>
   </div>`;
-  loadBizBookings(b);loadClosures(b);
+  loadBizBookings(b);loadClosures(b);loadPromote(b);loadGallery(b);loadBizReviews(b);
   const cb=box.querySelector("[data-cert]");if(cb)cb.onclick=()=>downloadCertificate(myBiz,cb);
   const lf=$("#logoFile");if(lf)lf.onchange=async()=>{const f=lf.files[0];if(!f)return;if(!/^image\//.test(f.type)){toast("Please choose a picture file.");return;}
     toast("Uploading your picture…");
@@ -1719,10 +1793,15 @@ async function renderAdmin(){
   const tile=(n,l)=>`<div class="tile"><span>${l}</span><b>${Number(n||0).toLocaleString("en-US")}</b></div>`;
   $("#admTiles").innerHTML=tile(bz.pending,"Awaiting approval")+tile(bz.approved,"Live businesses")+tile(Object.values(bk).reduce((a,c)=>a+c,0),"Booking requests")+tile((bk.confirmed||0)+(bk.completed||0),"Confirmed + completed")+tile(stats.customers,"Customers");
   const groups={pending:list.filter(x=>x.status==="pending"),approved:list.filter(x=>x.status==="approved"),other:list.filter(x=>x.status==="rejected"||x.status==="suspended")};
-  $("#admTabs").innerHTML=[["pending","Awaiting approval"],["approved","Live"],["other","Not approved / suspended"],["bookings","Bookings"],["activity","Reports"]].map(([k,l])=>`<button type="button" data-at="${k}" aria-pressed="${adminTab===k}">${l}${groups[k]?" ("+groups[k].length+")":""}</button>`).join("");
+  $("#admTabs").innerHTML=[["pending","Awaiting approval"],["approved","Live"],["other","Not approved / suspended"],["payments","Payments"],["bookings","Bookings"],["reviews","Reviews"],["activity","Reports"],["settings","Prices & backup"]].map(([k,l])=>`<button type="button" data-at="${k}" aria-pressed="${adminTab===k}">${l}${groups[k]?" ("+groups[k].length+")":""}</button>`).join("");
   $("#admTabs").onclick=e=>{const t=e.target.closest("[data-at]");if(!t)return;adminTab=t.dataset.at;renderAdmin();};
   if(adminTab==="bookings"){renderAdminBookings();return;}
   if(adminTab==="activity"){renderAdminActivity(stats);return;}
+  if(adminTab==="payments"){renderAdminPayments();return;}
+  if(adminTab==="reviews"){renderAdminReviews();return;}
+  if(adminTab==="settings"){$("#admList").innerHTML=`<div class="dash-card" id="admPrices"><p class="hint">Loading…</p></div>
+    <div class="dash-card"><h2>Backup</h2><p class="hint">Download a copy of everything on ServiceLink (businesses, services, bookings, reviews, payments and accounts) as one file. Do this every week and keep it somewhere safe, such as your Google Drive.</p><button class="btn btn-gold" type="button" id="bkupBtn" style="justify-self:start">Download backup</button></div>`;
+    renderAdminPrices();$("#bkupBtn").onclick=()=>downloadBackup($("#bkupBtn"));return;}
   const now=Date.now();
   const rows=groups[adminTab];
   $("#admList").innerHTML=rows.length?rows.map(x=>{
@@ -1730,7 +1809,7 @@ async function renderAdmin(){
     const w=waNum(x.whatsapp||x.phone), owner=x.owner||{};
     return `<article class="adm-row" data-id="${x.id}">
       <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start"><div style="display:flex;gap:12px;align-items:center;min-width:0">${avatar(x,"biz-av")}<div style="min-width:0"><h3 style="font-size:1.25rem">${esc(x.name)}</h3><span class="small">${esc(x.category)} · ${esc(x.area)} · registered ${fmtDay(x.created_at)}</span></div></div>
-      <div class="badges">${pill(x.status)}${x.verified?`<span class="vbadge">${icon("i-check")} Verified</span>`:""}${feat?`<span class="fbadge">Featured to ${fmtDay(x.featured_until)}</span>`:""}${x.plan==="premium"?`<span class="fbadge">Premium</span>`:""}</div></div>
+      <div class="badges">${pill(x.status)}${x.verified?`<span class="vbadge">${icon("i-check")} Verified</span>`:""}${feat?`<span class="fbadge">Featured to ${fmtDay(x.featured_until)}</span>`:""}${x.plan==="premium"?`<span class="pbadge">Premium${x.premium_until?" to "+fmtDay(x.premium_until):""}</span>`:""}</div></div>
       <div class="kv"><div><span>Owner</span><br>${esc(owner.full_name||"-")} ${owner.phone?"· "+esc(owner.phone):""}</div><div><span>Business phone</span><br>${esc(x.phone)}${x.whatsapp?" · WA "+esc(x.whatsapp):""}</div><div><span>Email</span><br>${esc(x.email||"-")}</div><div><span>Social</span><br>${esc(x.social||"-")}</div></div>
       ${x.about?`<p class="small" style="color:var(--ink)">${esc(x.about)}</p>`:""}
       <p class="small"><b>Services:</b> ${(x.services||[]).length?(x.services||[]).map(s=>esc(s.name)+(s.price_from!=null?" ("+kw(s.price_from)+")":"")).join(", "):"none added yet"}</p>
@@ -1770,15 +1849,15 @@ function toListing(r){
   const cat=r.category||"Local business";
   return {id:r.id,name:r.name,slug:r.slug,cat,sector:(ALLCATS.find(c=>c.name.toLowerCase()===cat.toLowerCase())||{}).sector||"other",
     area:r.area||"",phone:r.phone||"",wa:r.whatsapp||r.phone||"",email:r.email||"",about:r.about||"",social:r.social||"",
-    logo:r.logo_url||"",verified:!!r.verified,featured:!!(r.featured_until&&new Date(r.featured_until).getTime()>Date.now()),premium:r.plan==="premium",
+    logo:r.logo_url||"",verified:!!r.verified,featured:!!(r.featured_until&&new Date(r.featured_until).getTime()>Date.now()),premium:r.plan==="premium"&&(!r.premium_until||new Date(r.premium_until).getTime()>Date.now()),rating:r.rating_avg!=null?Number(r.rating_avg):0,ratingCount:r.rating_count||0,
     svcList:svc,services:svc.map(s=>s.name).join(", "),price:prices.length?"From "+kw(Math.min.apply(null,prices)):"",
     hoursList:(r.business_hours||[]).slice().sort((a,b)=>DAY_ORDER.indexOf(a.weekday)-DAY_ORDER.indexOf(b.weekday)),hours:""};
 }
 function loadListings(){
   if(!sb){LISTINGS=[];LOAD_STATE="error";renderBiz();renderRecent();if(currentView==="biz")renderProfile();return;}
-  sb.from("businesses").select("id,name,slug,category,area,phone,whatsapp,email,about,social,logo_url,verified,featured_until,plan,created_at,services(id,name,price_from,duration_minutes,description,active,sort),business_hours(weekday,opens,closes,closed)")
+  sb.from("businesses").select("id,name,slug,category,area,phone,whatsapp,email,about,social,logo_url,verified,featured_until,plan,premium_until,rating_avg,rating_count,created_at,services(id,name,price_from,duration_minutes,description,active,sort),business_hours(weekday,opens,closes,closed)")
     .eq("status","approved").order("created_at",{ascending:false})
-    .then(({data,error})=>{if(error)throw error;LISTINGS=(data||[]).map(toListing).sort((a,b)=>(b.featured-a.featured)||(b.premium-a.premium));LOAD_STATE="ready";})
+    .then(({data,error})=>{if(error)throw error;LISTINGS=(data||[]).map(toListing).sort((a,b)=>(b.featured-a.featured)||(b.premium-a.premium)||(b.verified-a.verified));LOAD_STATE="ready";})
     .catch(()=>{LISTINGS=LISTINGS||[];LOAD_STATE="error";})
     .finally(()=>{renderBiz();renderRecent();if(currentView==="biz")renderProfile();if(window.ScrollTrigger)ScrollTrigger.refresh();});
 }
@@ -1892,12 +1971,14 @@ async function loadMyBookings(){
   const {data,error}=await sb.from("bookings").select("*, business:businesses(name,slug,phone,whatsapp)").eq("customer_id",session.user.id).order("created_at",{ascending:false});
   if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
   if(!data.length){el.innerHTML=`<p class="hint">No bookings yet. <a href="#find">Find a business</a> and tap <b>Book online</b> on its page.</p>`;return;}
+  const mine={};try{const r=await sb.from("reviews").select("booking_id,rating").eq("customer_id",session.user.id);(r.data||[]).forEach(x=>mine[x.booking_id]=x);}catch(e){}
   el.innerHTML=data.map(k=>{const bz=k.business||{},w=waNum(bz.whatsapp||bz.phone),can=k.status==="pending"||k.status==="confirmed";
     const help={pending:"The business has not replied yet. This is a request, not a confirmed booking.",confirmed:"Confirmed by the business. Pay them directly.",declined:"The business could not take this booking.",expired:"The business did not reply in time, so this request has expired.",cancelled:"This booking was cancelled.",completed:"Job completed.",no_show:"Marked as a no-show by the business."}[k.status]||"";
     return `<div class="bk-row"><div class="bk-top"><div style="min-width:0"><b>${esc(k.service_name)}</b><span class="small">${esc(bz.name||"Business")} · ${esc(fmtWhen(k.booking_date,k.start_time))}</span></div>${bpill(k.status)}</div>
       <span class="small">Ref <b>${esc(k.ref)}</b>${k.price_from!=null?" · from "+kw(k.price_from):""}. ${esc(help)}</span>
       ${k.business_note?`<p class="small"><b>Note from the business:</b> ${esc(k.business_note)}</p>`:""}
-      <div class="adm-acts">${w?`<a class="mini dark" href="https://wa.me/${w}?text=${encodeURIComponent("Hello "+(bz.name||"")+", about my ServiceLink booking "+k.ref+".")}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}${bz.slug?`<a class="mini dark" href="#biz-${esc(bz.slug)}">View business</a>`:""}${can?`<button class="mini dark red" type="button" data-cancel="${esc(k.id)}">Cancel</button>`:""}</div></div>`;}).join("");
+      <div class="adm-acts">${w?`<a class="mini dark" href="https://wa.me/${w}?text=${encodeURIComponent("Hello "+(bz.name||"")+", about my ServiceLink booking "+k.ref+".")}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}${bz.slug?`<a class="mini dark" href="#biz-${esc(bz.slug)}">View business</a>`:""}${can?`<button class="mini dark red" type="button" data-cancel="${esc(k.id)}">Cancel</button>`:""}</div>${reviewBlock(k,mine)}</div>`;}).join("");
+  wireReviewForms(el);
   el.onclick=async e=>{const c=e.target.closest("[data-cancel]");if(!c)return;if(c.dataset.sure!=="1"){c.dataset.sure="1";c.textContent="Tap again to cancel";return;}
     const {error}=await sb.rpc("update_booking_status",{p_booking:c.dataset.cancel,p_status:"cancelled"});if(error){toast(friendlyErr(error));return;}toast("Booking cancelled");loadMyBookings();};
 }
@@ -1970,9 +2051,170 @@ async function renderAdminActivity(stats){
   <div class="dash-card"><h2>Business activity</h2><p class="hint">How each business handles its booking requests.</p>${(data||[]).length?`<div class="tbl"><table><thead><tr><th>Business</th><th>Requests</th><th>Waiting</th><th>Confirmed</th><th>Completed</th><th>Declined</th><th>Expired</th><th>Avg reply</th><th>Last request</th></tr></thead><tbody>${data.map(a=>`<tr><td>${esc(a.name)}<br><span class="small">${esc(a.status)}</span></td><td>${a.requests}</td><td>${a.pending}</td><td>${a.confirmed}</td><td>${a.completed}</td><td>${a.declined}</td><td>${a.expired}</td><td>${a.avg_reply_hours!=null?a.avg_reply_hours+" h":"-"}</td><td>${a.last_booking?fmtDay(a.last_booking):"-"}</td></tr>`).join("")}</tbody></table></div>`:`<p class="hint">No businesses yet.</p>`}</div>`;
 }
 
+/* ---------- Phase 3: reviews, plans, payments, gallery, backup ---------- */
+const PAY={airtel:{label:"Airtel Money",num:"097 965 0844"},mtn:{label:"MTN MoMo",num:"076 492 2544"}};
+function stars(n,size){const r=Math.round(Number(n)||0);let s="";for(let i=1;i<=5;i++)s+=`<span class="star${i<=r?" on":""}"${size?` style="font-size:${size}"`:""}>★</span>`;return `<span class="stars" aria-label="${r} out of 5 stars">${s}</span>`;}
+function ratingLine(b){return b.ratingCount?`<span class="rating">${stars(b.rating)} <b>${Number(b.rating).toFixed(1)}</b> <span>(${b.ratingCount} review${b.ratingCount===1?"":"s"})</span></span>`:"";}
+
+/* customer: review form on completed bookings */
+function reviewBlock(k,mine){
+  if(k.status!=="completed")return "";
+  const r=mine[k.id];
+  if(r)return `<p class="small">You rated this ${stars(r.rating)}. Thank you for your review.</p>`;
+  return `<form class="rv-form" data-rv="${esc(k.id)}" novalidate><span class="small"><b>How did it go?</b> Leave a review to help other customers.</span>
+    <div class="star-pick" role="radiogroup" aria-label="Rating">${[1,2,3,4,5].map(i=>`<button type="button" role="radio" aria-checked="false" data-star="${i}" aria-label="${i} star${i>1?"s":""}">★</button>`).join("")}</div>
+    <textarea maxlength="600" placeholder="What did you like? Was the job done well and on time?" aria-label="Your review"></textarea>
+    <button class="btn btn-navy" type="submit" style="justify-self:start;padding:9px 16px;font-size:.88rem">Post review</button></form>`;
+}
+function wireReviewForms(el){
+  el.querySelectorAll(".rv-form").forEach(f=>{
+    let rating=0;
+    f.querySelectorAll("[data-star]").forEach(b=>b.onclick=()=>{rating=+b.dataset.star;f.querySelectorAll("[data-star]").forEach(x=>{const on=+x.dataset.star<=rating;x.classList.toggle("on",on);x.setAttribute("aria-checked",+x.dataset.star===rating);});});
+    f.onsubmit=async e=>{e.preventDefault();if(!rating){toast("Tap the stars to choose a rating.");return;}
+      const btn=f.querySelector("button[type=submit]");busyBtn(btn,true,"Posting…");
+      const {error}=await sb.rpc("leave_review",{p_booking:f.dataset.rv,p_rating:rating,p_comment:f.querySelector("textarea").value.trim()||null});
+      busyBtn(btn,false);if(error){toast(friendlyErr(error));return;}toast("Thank you. Your review is posted.");loadMyBookings();loadListings();};
+  });
+}
+
+/* public: reviews and gallery on the business page */
+async function loadPublicExtras(b){
+  const rv=$("#pubReviews"),gal=$("#pubGallery");
+  if(!sb)return;
+  try{
+    const [r,g]=await Promise.all([
+      sb.from("reviews").select("reviewer_name,rating,comment,created_at").eq("business_id",b.id).eq("status","published").order("created_at",{ascending:false}).limit(30),
+      b.premium?sb.from("business_photos").select("url,sort").eq("business_id",b.id).order("sort").order("created_at"):Promise.resolve({data:[]})
+    ]);
+    if(rv){const list=(r.data||[]);
+      rv.innerHTML=list.length?list.map(x=>`<div class="rv"><div class="bk-top"><b>${esc(x.reviewer_name)}</b>${stars(x.rating)}</div>${x.comment?`<p>${esc(x.comment)}</p>`:""}<span class="small">${fmtDay(x.created_at)} · verified booking</span></div>`).join("")
+        :`<p class="hint">No reviews yet. Reviews come only from customers who booked through ServiceLink and had the job completed.</p>`;}
+    if(gal){const ph=(g.data||[]);gal.closest(".prof-card").hidden=!ph.length;
+      gal.innerHTML=ph.map(p=>`<a href="${esc(p.url)}" target="_blank" rel="noopener"><img src="${esc(p.url)}" alt="Photo from ${esc(b.name)}" loading="lazy"></a>`).join("");}
+  }catch(e){}
+}
+
+/* business: promote (plans + mobile money payment) */
+let PLANS=null;
+async function getPlans(){if(PLANS)return PLANS;const {data}=await sb.from("plans").select("*").order("sort");PLANS=data||[];return PLANS;}
+async function loadPromote(b){
+  const el=$("#promoteBox");if(!el)return;
+  if(b.status!=="approved"){el.innerHTML=`<p class="hint">You can buy featured placement or Premium once your listing is approved.</p>`;return;}
+  let plans=[],pays=[];
+  try{const [p,q]=await Promise.all([getPlans(),sb.from("payments").select("*").eq("business_id",b.id).order("created_at",{ascending:false})]);plans=p.filter(x=>x.active&&x.price!=null);pays=q.data||[];}catch(e){}
+  const now=Date.now(),feat=b.featured_until&&new Date(b.featured_until).getTime()>now,prem=b.plan==="premium"&&(!b.premium_until||new Date(b.premium_until).getTime()>now);
+  const status=`<div class="kv"><div><span>Featured placement</span><br><b>${feat?"Active until "+fmtDay(b.featured_until):"Not active"}</b></div><div><span>Premium plan</span><br><b>${prem?(b.premium_until?"Active until "+fmtDay(b.premium_until):"Active"):"Not active"}</b></div></div>`;
+  const hist=pays.length?`<div style="display:grid;gap:8px"><b style="font-size:.95rem">Your payments</b>${pays.map(p=>{const pl=(PLANS||[]).find(x=>x.code===p.plan_code)||{};const st={submitted:"Waiting for ServiceLink to check",confirmed:"Confirmed and active",rejected:"Not confirmed"}[p.status];
+    return `<div class="bk-row"><div class="bk-top"><div><b>${esc(pl.name||p.plan_code)}</b><span class="small">${kw(p.amount)} via ${esc(PAY[p.method].label)} · ${fmtDay(p.created_at)}</span></div><span class="pill pay-${esc(p.status)}">${esc(st)}</span></div><span class="small">Ref ${esc(p.ref)} · Transaction ID ${esc(p.txn_id)}${p.admin_note?" · "+esc(p.admin_note):""}</span></div>`;}).join("")}</div>`:"";
+  if(!plans.length){el.innerHTML=status+`<p class="hint">Featured placement and Premium plans will be available soon.</p>`+hist;return;}
+  el.innerHTML=status+`
+   <div class="plan-grid">${plans.map((p,i)=>`<label class="opt plan-opt"><input type="radio" name="planPick" value="${esc(p.code)}" ${i===0?"checked":""}><span class="t"><b>${esc(p.name)}</b><span>${esc(p.description||"")}</span></span><span class="p">${kw(p.price)}</span></label>`).join("")}</div>
+   <div class="pay-steps">
+     <b>How to pay</b>
+     <ol>
+       <li>Send <b id="payAmt">${kw(plans[0].price)}</b> by mobile money to ServiceLink:<div class="pay-nums">${Object.entries(PAY).map(([k,v])=>`<div class="pay-num"><span>${v.label}</span><b>${v.num}</b><button class="mini dark" type="button" data-copy="${v.num.replace(/\s/g,"")}">${icon("i-copy")} Copy</button></div>`).join("")}</div></li>
+       <li>Wait for the confirmation SMS and note the <b>transaction ID</b>.</li>
+       <li>Fill in the form below. Your plan switches on as soon as ServiceLink confirms the payment.</li>
+     </ol>
+   </div>
+   <form class="form" id="payForm" novalidate>
+     <div class="f2"><div class="fld"><label for="pay-method">Paid with *</label><select id="pay-method" required><option value="airtel">Airtel Money</option><option value="mtn">MTN MoMo</option></select></div>
+     <div class="fld"><label for="pay-phone">Number you paid from *</label><input id="pay-phone" type="tel" required value="${esc(b.phone||"")}"><span class="err">Add a Zambian phone number.</span></div></div>
+     <div class="fld"><label for="pay-txn">Transaction ID from your SMS *</label><input id="pay-txn" required maxlength="40" autocapitalize="characters" placeholder="e.g. MP261107.1543.A12345"><span class="err">Add the transaction ID.</span></div>
+     <p class="form-msg" id="payMsg" hidden></p>
+     <button class="btn btn-gold" type="submit" style="justify-self:start">Submit payment</button>
+   </form>`+hist;
+  el.querySelectorAll("input[name=planPick]").forEach(r=>r.onchange=()=>{const p=plans.find(x=>x.code===r.value);$("#payAmt").textContent=kw(p.price);});
+  $("#payForm").onsubmit=async e=>{e.preventDefault();if(!check(e.target))return;const btn=e.target.querySelector("button[type=submit]");busyBtn(btn,true,"Submitting…");
+    const {data,error}=await sb.rpc("submit_payment",{p_plan:el.querySelector("input[name=planPick]:checked").value,p_method:$("#pay-method").value,p_phone:val("#pay-phone"),p_txn:val("#pay-txn")});
+    busyBtn(btn,false);if(error){setMsg($("#payMsg"),friendlyErr(error));return;}
+    const p=Array.isArray(data)?data[0]:data;toast("Payment submitted");
+    const msg=`Hello ServiceLink, I have paid for ${((PLANS||[]).find(x=>x.code===p.plan_code)||{}).name||p.plan_code} for ${b.name}.\n\nPayment ref: ${p.ref}\nAmount: ${kw(p.amount)}\nPaid with: ${PAY[p.method].label}\nTransaction ID: ${p.txn_id}`;
+    loadPromote(b).then(()=>{$("#promoteBox").insertAdjacentHTML("afterbegin",`<div class="info" style="margin:0"><svg class="ic"><use href="#i-check"/></svg><span>Payment submitted (ref ${esc(p.ref)}). <a href="${waLink(msg)}" target="_blank" rel="noopener">Send ServiceLink a WhatsApp</a> to have it checked faster.</span></div>`);});};
+}
+
+/* business: premium gallery */
+async function loadGallery(b){
+  const el=$("#galBox");if(!el)return;
+  const prem=b.plan==="premium"&&(!b.premium_until||new Date(b.premium_until).getTime()>Date.now());
+  if(!prem){el.innerHTML=`<p class="hint">Premium businesses can show up to 8 photos of their work on their page. Get Premium in <b>Promote your business</b> above.</p>`;return;}
+  const {data}=await sb.from("business_photos").select("*").eq("business_id",b.id).order("sort").order("created_at");
+  const ph=data||[];
+  el.innerHTML=`<div class="gal">${ph.map(p=>`<div class="gal-item"><img src="${esc(p.url)}" alt=""><button class="mini dark red" type="button" data-ph="${esc(p.id)}">Remove</button></div>`).join("")}</div>
+    ${ph.length<8?`<label class="btn btn-ghost" for="galFile" style="cursor:pointer;justify-self:start">Add photos (${8-ph.length} left)</label><input id="galFile" class="sr" type="file" accept="image/*" multiple>`:`<p class="small">You have used all 8 photo spaces. Remove one to add another.</p>`}`;
+  el.querySelectorAll("[data-ph]").forEach(x=>x.onclick=async()=>{if(x.dataset.sure!=="1"){x.dataset.sure="1";x.textContent="Tap again";return;}
+    const {error}=await sb.from("business_photos").delete().eq("id",x.dataset.ph);if(error){toast(friendlyErr(error));return;}toast("Photo removed");loadGallery(b);});
+  const gf=$("#galFile");if(gf)gf.onchange=async()=>{const files=[...gf.files].slice(0,8-ph.length);if(!files.length)return;toast("Uploading "+files.length+" photo"+(files.length>1?"s":"")+"…");
+    try{for(let i=0;i<files.length;i++){const blob=await wideJpeg(files[i],1200),path=session.user.id+"/gallery-"+Date.now()+"-"+i+".jpg";
+        const up=await sb.storage.from("logos").upload(path,blob,{contentType:"image/jpeg",cacheControl:"3600"});if(up.error)throw up.error;
+        const url=sb.storage.from("logos").getPublicUrl(path).data.publicUrl;
+        const {error}=await sb.from("business_photos").insert({business_id:b.id,url,sort:ph.length+i});if(error)throw error;}
+      toast("Photos added");}catch(err){toast(friendlyErr(err));}
+    loadGallery(b);};
+}
+function wideJpeg(file,max){return new Promise((res,rej)=>{const u=URL.createObjectURL(file),i=new Image();
+  i.onload=()=>{const k=Math.min(1,max/Math.max(i.naturalWidth,i.naturalHeight)),c=document.createElement("canvas");c.width=Math.round(i.naturalWidth*k);c.height=Math.round(i.naturalHeight*k);
+    c.getContext("2d").drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?res(b):rej(new Error("Could not read that picture.")),"image/jpeg",0.82);};
+  i.onerror=()=>{URL.revokeObjectURL(u);rej(new Error("Could not read that picture. Try a JPG or PNG."));};i.src=u;});}
+
+/* business: their reviews */
+async function loadBizReviews(b){
+  const el=$("#bizRv");if(!el)return;
+  const {data}=await sb.from("reviews").select("*").eq("business_id",b.id).order("created_at",{ascending:false});
+  const list=data||[];
+  el.innerHTML=list.length?list.map(x=>`<div class="rv"><div class="bk-top"><b>${esc(x.reviewer_name)}</b>${stars(x.rating)}</div>${x.comment?`<p>${esc(x.comment)}</p>`:""}<span class="small">${fmtDay(x.created_at)}${x.status==="hidden"?" · hidden by ServiceLink":""}</span></div>`).join("")
+    :`<p class="hint">No reviews yet. Customers can review you after you mark their booking as completed.</p>`;
+}
+
+/* admin: payments, reviews, prices, backup */
+async function renderAdminPayments(){
+  const el=$("#admList");el.innerHTML=`<p class="hint">Loading payments…</p>`;
+  const [{data,error},plans]=await Promise.all([sb.from("payments").select("*, business:businesses(name,slug,phone)").order("created_at",{ascending:false}).limit(300),getPlans()]);
+  if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
+  const list=data||[],waiting=list.filter(p=>p.status==="submitted"),done=list.filter(p=>p.status!=="submitted");
+  const row=p=>{const pl=plans.find(x=>x.code===p.plan_code)||{},bz=p.business||{};
+    return `<div class="bk-row" data-pay="${esc(p.id)}"><div class="bk-top"><div style="min-width:0"><b>${esc(bz.name||"Business")}</b><span class="small">${esc(pl.name||p.plan_code)} · ${kw(p.amount)}</span></div><span class="pill pay-${esc(p.status)}">${esc({submitted:"To check",confirmed:"Confirmed",rejected:"Rejected"}[p.status])}</span></div>
+      <div class="kv"><div><span>Paid with</span><br>${esc(PAY[p.method].label)} to ${esc(PAY[p.method].num)}</div><div><span>From number</span><br><b style="user-select:all">${esc(p.payer_phone)}</b></div><div><span>Transaction ID</span><br><b style="user-select:all">${esc(p.txn_id)}</b></div><div><span>Submitted</span><br>${fmtDay(p.created_at)} · ${esc(p.ref)}</div></div>
+      ${p.admin_note?`<span class="small">Note: ${esc(p.admin_note)}</span>`:""}
+      ${p.status==="submitted"?`<p class="small">Check your ${esc(PAY[p.method].label)} messages for a payment of <b>${kw(p.amount)}</b> with this transaction ID before confirming.</p>
+      <div class="fld"><label for="pn-${esc(p.id)}">Note to the business <em>(optional)</em></label><input id="pn-${esc(p.id)}" data-pnote maxlength="200"></div>
+      <div class="adm-acts"><button class="btn btn-gold" type="button" data-pay-act="yes">${icon("i-check")} Confirm and switch on</button><button class="btn btn-ghost" type="button" data-pay-act="no">Not received</button></div>`:""}</div>`;};
+  el.innerHTML=`<h3 style="font-size:1.2rem">To check (${waiting.length})</h3>${waiting.length?waiting.map(row).join(""):`<p class="hint">No payments waiting.</p>`}<h3 style="font-size:1.2rem;margin-top:12px">Checked</h3>${done.length?done.map(row).join(""):`<p class="hint">Nothing yet.</p>`}`;
+  el.onclick=async e=>{const a=e.target.closest("[data-pay-act]");if(!a)return;const r=a.closest("[data-pay]"),yes=a.dataset.payAct==="yes";
+    if(!yes&&a.dataset.sure!=="1"){a.dataset.sure="1";a.textContent="Tap again to reject";return;}
+    busyBtn(a,true,"Saving…");const {error}=await sb.rpc("admin_decide_payment",{p_payment:r.dataset.pay,p_accept:yes,p_note:(r.querySelector("[data-pnote]")||{}).value||null});
+    if(error){busyBtn(a,false);toast(friendlyErr(error));return;}toast(yes?"Confirmed. The plan is now active.":"Marked as not received");renderAdminPayments();loadListings();};
+}
+async function renderAdminReviews(){
+  const el=$("#admList");el.innerHTML=`<p class="hint">Loading reviews…</p>`;
+  const {data,error}=await sb.from("reviews").select("*, business:businesses(name)").order("created_at",{ascending:false}).limit(300);
+  if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
+  el.innerHTML=(data||[]).length?data.map(x=>`<div class="bk-row" data-rid="${esc(x.id)}"><div class="bk-top"><div><b>${esc((x.business||{}).name||"")}</b><span class="small">by ${esc(x.reviewer_name)} · ${fmtDay(x.created_at)}</span></div>${stars(x.rating)}</div>${x.comment?`<p class="small" style="color:var(--ink)">${esc(x.comment)}</p>`:""}
+    <div class="adm-acts">${x.status==="published"?`<button class="btn btn-ghost" type="button" data-rv-set="hidden">Hide review</button>`:`<span class="pill suspended">Hidden</span><button class="btn btn-ghost" type="button" data-rv-set="published">Show again</button>`}</div></div>`).join(""):`<p class="hint">No reviews yet.</p>`;
+  el.onclick=async e=>{const a=e.target.closest("[data-rv-set]");if(!a)return;busyBtn(a,true,"Saving…");const {error}=await sb.rpc("admin_set_review",{p_review:a.closest("[data-rid]").dataset.rid,p_status:a.dataset.rvSet});
+    if(error){busyBtn(a,false);toast(friendlyErr(error));return;}toast("Review updated");renderAdminReviews();loadListings();};
+}
+async function renderAdminPrices(){
+  const box=$("#admPrices");if(!box)return;PLANS=null;const plans=await getPlans();
+  box.innerHTML=`<h2>Plans and prices</h2><p class="hint">Set a price to make a plan available for businesses to buy. Leave it empty to hide the plan.</p>`+plans.map(p=>`<form class="form price-row" data-code="${esc(p.code)}" novalidate><div class="f2"><div class="fld"><label>${esc(p.name)}</label><input data-price inputmode="decimal" placeholder="Price in Kwacha" value="${p.price!=null?Number(p.price):""}"></div><div class="fld"><label>Days</label><input data-days inputmode="numeric" value="${p.days}"></div></div><button class="btn btn-ghost" type="submit" style="justify-self:start">Save price</button></form>`).join("");
+  box.querySelectorAll(".price-row").forEach(f=>f.onsubmit=async e=>{e.preventDefault();const pr=f.querySelector("[data-price]").value.replace(/[^0-9.]/g,""),d=parseInt(f.querySelector("[data-days]").value,10);
+    if(!(d>=1&&d<=366)){toast("Days must be between 1 and 366.");return;}
+    const {error}=await sb.from("plans").update({price:pr?Number(pr):null,days:d}).eq("code",f.dataset.code);if(error){toast(friendlyErr(error));return;}PLANS=null;toast("Price saved");});
+}
+async function downloadBackup(btn){
+  busyBtn(btn,true,"Preparing backup…");
+  try{
+    const tables=["profiles","businesses","services","business_hours","business_closures","bookings","booking_events","reviews","plans","payments","business_photos"],out={created:new Date().toISOString(),project:SB_URL};
+    for(const t of tables){const {data,error}=await sb.from(t).select("*");out[t]=error?{error:error.message}:data;}
+    const blob=new Blob([JSON.stringify(out,null,1)],{type:"application/json"}),a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);a.download="servicelink-backup-"+isoDate(lusakaNow())+".json";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);
+    toast("Backup downloaded");
+  }catch(err){toast(friendlyErr(err));}finally{busyBtn(btn,false);}
+}
+
 /* ---------- routing ---------- */
-const VIEWS=["home","find","solutions","shop","join","about","biz","account","dashboard","admin"];
-const WORD={home:"Discover.",find:"Discover.",solutions:"Grow.",shop:"Plan.",join:"Grow.",about:"Connect.",biz:"Connect.",account:"Connect.",dashboard:"Grow.",admin:"Connect."};
+const VIEWS=["home","find","solutions","shop","join","about","biz","account","dashboard","admin","privacy"];
+const WORD={home:"Discover.",find:"Discover.",solutions:"Grow.",shop:"Plan.",join:"Grow.",about:"Connect.",biz:"Connect.",account:"Connect.",dashboard:"Grow.",admin:"Connect.",privacy:"Connect."};
 let currentView=null, busy=false;
 function show(v){
   $$(".view").forEach(s=>s.hidden=s.dataset.view!==v);
@@ -1981,7 +2223,7 @@ function show(v){
   if(v==="find")renderCats();
   syncTray();
   window.scrollTo({top:0,left:0,behavior:"instant"});
-  document.title=v==="home"?"ServiceLink Zambia":({find:"Find a business",solutions:"Business solutions",shop:"2027 diaries",join:"List your business",about:"About",biz:"Business",account:"My account",dashboard:"Business dashboard",admin:"Admin"}[v])+" · ServiceLink Zambia";
+  document.title=v==="home"?"ServiceLink Zambia":({find:"Find a business",solutions:"Business solutions",shop:"2027 diaries",join:"List your business",about:"About",biz:"Business",account:"My account",dashboard:"Business dashboard",admin:"Admin",privacy:"Privacy and terms"}[v])+" · ServiceLink Zambia";
   if(v==="biz")renderProfile();
   if(prerendered===v)prerendered=null;else renderView(v);
   if(HAS_G&&window.ScrollTrigger){ScrollTrigger.refresh();}
