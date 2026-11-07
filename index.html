@@ -330,6 +330,7 @@ p{margin:0}
 .tbl th{text-align:left;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1.5px solid var(--ink);white-space:nowrap}
 .tbl td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
 .vbadge .seal{width:28px;height:28px;margin:-7px 2px -7px -6px}
+img.pic{object-fit:cover;background:var(--white);border:1px solid var(--line);padding:0}
 /* cta band */
 .cta{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
 @media (max-width:860px){.cta{grid-template-columns:1fr}}
@@ -951,7 +952,7 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
             <li><div><b>Your listing goes live</b><span>Customers find you and contact you directly by phone or WhatsApp. You get your own page to share.</span></div></li>
           </ol>
           <a class="btn btn-gold" id="formBtn" href="#" target="_blank" rel="noopener" data-magnetic>Open the sign-up form <svg class="ic arr"><use href="#i-arrow"/></svg></a>
-          <p class="small">Listing is free during launch. Questions? WhatsApp <b>077 159 3633</b>.</p>
+          <p class="small">Listing is free during launch. Questions? WhatsApp <b>076 492 2544</b>.</p>
         </div>
         <form class="form" id="joinForm" novalidate>
           <div class="f2">
@@ -1061,7 +1062,7 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
   <div class="wrap" style="display:grid;gap:36px">
     <div class="sec-head" style="margin:0" data-reveal><span class="eyebrow">Contact</span><h2 class="h2">Let's build a better <span class="serif">business presence.</span></h2><p class="sub">For enquiries, service requests and project discussions, reach ServiceLink directly.</p></div>
     <div class="contact">
-      <div class="cbox"><span class="mono">WhatsApp</span><span class="val">077 159 3633</span><div class="row"><a class="mini" href="https://wa.me/260771593633" target="_blank" rel="noopener"><svg class="ic"><use href="#i-wa"/></svg>Chat</a><button class="mini" data-copy="0771593633"><svg class="ic"><use href="#i-copy"/></svg>Copy</button></div></div>
+      <div class="cbox"><span class="mono">WhatsApp</span><span class="val">076 492 2544</span><div class="row"><a class="mini" href="https://wa.me/260764922544" target="_blank" rel="noopener"><svg class="ic"><use href="#i-wa"/></svg>Chat</a><button class="mini" data-copy="0764922544"><svg class="ic"><use href="#i-copy"/></svg>Copy</button></div></div>
       <div class="cbox"><span class="mono">Call</span><span class="val">097 965 0844</span><div class="row"><a class="mini" href="tel:+260979650844"><svg class="ic"><use href="#i-phone"/></svg>Call</a><button class="mini" data-copy="0979650844"><svg class="ic"><use href="#i-copy"/></svg>Copy</button></div></div>
       <div class="cbox"><span class="mono">Email</span><span class="val" style="font-size:1.05rem">servicelinkzm@gmail.com</span><div class="row"><a class="mini" href="mailto:servicelinkzm@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>Email</a><a class="mini" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=servicelinkzm@gmail.com&amp;su=Enquiry%20from%20the%20ServiceLink%20website" target="_blank" rel="noopener">Gmail</a><button class="mini" data-copy="servicelinkzm@gmail.com"><svg class="ic"><use href="#i-copy"/></svg>Copy</button></div></div>
       <div class="cbox"><span class="mono">Visit</span><span class="val" style="font-size:1.05rem">37112 Rockfield Chalala, Lusaka</span><div class="row"><a class="mini" href="https://www.facebook.com/search/top?q=ServiceLink%20ZM" target="_blank" rel="noopener"><svg class="ic"><use href="#i-fb"/></svg>ServiceLink ZM</a><a class="mini" href="https://www.instagram.com/servicelinkzm/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-ig"/></svg>@servicelinkzm</a></div></div>
@@ -1091,7 +1092,7 @@ footer{background:var(--navy-950);color:var(--on-navy-muted);padding-block:48px 
 (function(){
 "use strict";
 const SITE_URL="https://servicelinkzm1.github.io";
-const WA="260771593633";
+const WA="260764922544";
 const RM=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const HAS_G=typeof window.gsap!=="undefined";
 if(HAS_G&&window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
@@ -1160,7 +1161,7 @@ function doneHTML(r,title,msg,lead){
   <div class="ref"><span class="mono" style="color:var(--on-navy-muted)">Reference</span><b>${esc(r)}</b></div>
   <div class="msg" tabindex="0">${esc(msg)}</div>
   <div class="row"><a class="btn btn-wa" href="${waLink(msg)}" target="_blank" rel="noopener">${icon("i-wa")} Send on WhatsApp</a><button class="btn btn-ghost" type="button" data-copymsg>${icon("i-copy")} Copy message</button></div>
-  <p class="small">If WhatsApp does not open, copy the message and send it to <b>077 159 3633</b>, or call <b>097 965 0844</b>.</p>
+  <p class="small">If WhatsApp does not open, copy the message and send it to <b>076 492 2544</b>, or call <b>097 965 0844</b>.</p>
   <button class="link" type="button" data-again>Start a new one</button>`;
 }
 function showDone(box,formWrap,r,title,msg,lead,onAgain){
@@ -1231,11 +1232,12 @@ function rowsToListings(rows){
     return {name,slug,cat:cat||"Local business",sector:sec,area:g(r,"area"),phone:g(r,"phone"),wa:g(r,"wa")||g(r,"phone"),email:g(r,"email"),services:g(r,"services"),price:g(r,"price"),hours:g(r,"hours"),social:g(r,"social"),about:g(r,"about"),verified:/^y/i.test(g(r,"verified"))};
   }).reverse();
 }
+function avatar(b,cls){const u=b.logo||b.logo_url||"";return u?`<img class="${cls} pic" src="${esc(u)}" alt="${esc(b.name)} logo" loading="lazy">`:`<div class="${cls}" aria-hidden="true">${esc(String(b.name||"").replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div>`;}
 function bizMsg(b){return `Hello ${b.name}, I found your business on ServiceLink (${SITE_URL}). I would like to ask about your services.`;}
 function bizCard(b){
   const w=waNum(b.wa), t=waNum(b.phone||b.wa);
   return `<article class="biz spot" data-tilt>
-   <div class="biz-top"><div class="biz-av" aria-hidden="true">${esc(b.name.replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div><div><h3>${esc(b.name)}</h3><span class="where">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div>
+   <div class="biz-top">${avatar(b,"biz-av")}<div><h3>${esc(b.name)}</h3><span class="where">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div>
    <div class="badges">${b.featured?`<span class="fbadge">Featured</span>`:""}${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span></div>
    ${b.about||b.services?`<p>${esc(b.about||b.services)}</p>`:""}
    <div class="biz-acts">${w?`<a class="btn btn-wa" href="https://wa.me/${w}?text=${encodeURIComponent(bizMsg(b))}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}${t?`<a class="btn btn-navy" href="tel:+${t}">${icon("i-phone")} Call</a>`:""}</div>
@@ -1273,7 +1275,7 @@ function renderProfile(){
   const social=b.social?(/^https?:\/\//i.test(b.social)?`<a class="link" href="${esc(b.social)}" target="_blank" rel="noopener">${esc(b.social.replace(/^https?:\/\/(www\.)?/i,"").slice(0,48))}</a>`:esc(b.social)):"";
   box.innerHTML=`<div class="phead"><div class="phead-orb"></div><div class="wrap">
     <a class="back" href="#find">${icon("i-arrow")} All businesses</a>
-    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><div class="ph-av" aria-hidden="true">${esc(b.name.replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div>${b.verified?`<img src="${BADGE_SM}" alt="ServiceLink approved service provider badge" style="width:84px;height:84px">`:""}
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${avatar(b,"ph-av")}${b.verified?`<img src="${BADGE_SM}" alt="ServiceLink approved service provider badge" style="width:84px;height:84px">`:""}
     <div style="display:grid;gap:10px;min-width:0"><h1 style="font-size:clamp(2.2rem,6vw,4.2rem);overflow-wrap:anywhere">${esc(b.name)}</h1>
     <div class="badges">${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span><span class="catbadge">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div></div>
   </div></div>
@@ -1403,7 +1405,7 @@ $("#joinForm").addEventListener("input",joinSync);$("#joinForm").addEventListene
 $("#j-biz").addEventListener("input",()=>{if(HAS_G&&!RM)gsap.fromTo("#lvAv",{scale:.8},{scale:1,duration:.4,ease:"back.out(3)"});});
 $("#joinForm").addEventListener("submit",async e=>{
   e.preventDefault();if(!check(e.target))return;
-  if(!sb){setMsg($("#joinMsg"),"Registration is not available right now. Please WhatsApp ServiceLink on 077 159 3633.");return;}
+  if(!sb){setMsg($("#joinMsg"),"Registration is not available right now. Please WhatsApp ServiceLink on 076 492 2544.");return;}
   if(!session){acctMode="signup";acctType="business";afterLogin="join";location.hash="account";return;}
   const btn=e.target.querySelector("button[type=submit]"),msg=$("#joinMsg");setMsg(msg,"");busyBtn(btn,true,"Registering…");
   try{
@@ -1436,6 +1438,8 @@ function friendlyErr(e){
   if(/rate limit|too many/i.test(m))return "Too many attempts. Please wait a few minutes and try again.";
   if(/Email not confirmed/i.test(m))return "Please confirm your email first. Check your inbox for the link.";
   if(/duplicate key.*owner/i.test(m))return "You have already registered a business with this account.";
+  if(/Bucket not found|bucket/i.test(m))return "Picture uploads are not switched on yet. ServiceLink needs to run the logo setup.";
+  if(/exceeded|too large|Payload/i.test(m))return "That picture is too large. Please choose a smaller one.";
   if(/Failed to fetch|NetworkError|network|Load failed/i.test(m))return "Can't reach ServiceLink right now. Check your internet connection and try again.";
   if(/permission denied|row-level security|JWT/i.test(m))return "You don't have permission to do that. Please sign in again.";
   if(/violates check constraint/i.test(m))return "Please check the details you entered and try again.";
@@ -1474,7 +1478,7 @@ document.addEventListener("click",e=>{const g=e.target.closest("[data-am-go]");i
 /* ----- account view ----- */
 function renderAccount(){
   const box=$("#acctBox"), title=$("#acctTitle"), lead=$("#acctLead");
-  if(!sb){box.innerHTML=`<p>Accounts are not available right now. Please try again later, or WhatsApp ServiceLink on <b>077 159 3633</b>.</p>`;return;}
+  if(!sb){box.innerHTML=`<p>Accounts are not available right now. Please try again later, or WhatsApp ServiceLink on <b>076 492 2544</b>.</p>`;return;}
   if(!authReady){box.innerHTML=`<p class="hint">Loading your account…</p>`;return;}
   if(recovery){
     title.innerHTML=`Choose a new <span class="gold">password.</span>`;lead.textContent="Enter a new password for your ServiceLink account.";
@@ -1593,7 +1597,7 @@ async function renderDashboard(){
   const statusText={pending:"ServiceLink is checking your details. Your listing goes live as soon as it is approved. Meanwhile, add your services and working hours below.",
     approved:"Your listing is live. Customers can find you and contact you directly.",
     rejected:"Your listing was not approved."+(b.admin_note?" Reason: "+b.admin_note:"")+" Update your details below, then WhatsApp ServiceLink to ask for another review.",
-    suspended:"Your listing is paused. Please contact ServiceLink on 077 159 3633."}[b.status]||"";
+    suspended:"Your listing is paused. Please contact ServiceLink on 076 492 2544."}[b.status]||"";
   const hmap={};hrs.forEach(x=>hmap[x.weekday]=x);
   const hasHours=hrs.length>0;
   const defH=d=>d===0?{closed:true}:d===6?{opens:"08:00",closes:"13:00"}:{opens:"08:00",closes:"17:00"};
@@ -1618,6 +1622,10 @@ async function renderDashboard(){
   </div>
 
   <div class="dash-card"><h2>Business details</h2>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">${avatar(b,"ph-av")}<div style="display:grid;gap:8px;flex:1;min-width:200px">
+      <label class="btn btn-ghost" for="logoFile" style="cursor:pointer;justify-self:start">${b.logo_url?"Change":"Add"} your logo or photo</label><input id="logoFile" class="sr" type="file" accept="image/*">
+      <span class="small">Customers see this on your listing. Square pictures look best, and large photos are resized automatically.</span>
+      ${b.logo_url?`<button class="link" type="button" id="logoRemove" style="justify-self:start">Remove picture</button>`:""}</div></div>
     <form class="form" id="dForm" novalidate>
       <div class="f2"><div class="fld"><label for="d-name">Business name *</label><input id="d-name" required maxlength="80" value="${esc(b.name)}"><span class="err">Add your business name.</span></div>
       <div class="fld"><label for="d-cat">Category *</label><select id="d-cat" required>${svcOptions}</select><span class="err">Choose a category.</span></div></div>
@@ -1663,6 +1671,15 @@ async function renderDashboard(){
   </div>`;
   loadBizBookings(b);loadClosures(b);
   const cb=box.querySelector("[data-cert]");if(cb)cb.onclick=()=>downloadCertificate(myBiz,cb);
+  const lf=$("#logoFile");if(lf)lf.onchange=async()=>{const f=lf.files[0];if(!f)return;if(!/^image\//.test(f.type)){toast("Please choose a picture file.");return;}
+    toast("Uploading your picture…");
+    try{const blob=await squareJpeg(f,400),path=session.user.id+"/"+Date.now()+".jpg";
+      const up=await sb.storage.from("logos").upload(path,blob,{contentType:"image/jpeg",cacheControl:"3600"});if(up.error)throw up.error;
+      const url=sb.storage.from("logos").getPublicUrl(path).data.publicUrl;
+      const {data,error}=await sb.from("businesses").update({logo_url:url}).eq("id",b.id).select().single();if(error)throw error;
+      myBiz=data;toast("Picture updated");renderDashboard();loadListings();
+    }catch(err){toast(friendlyErr(err));}};
+  const lr=$("#logoRemove");if(lr)lr.onclick=async()=>{const {data,error}=await sb.from("businesses").update({logo_url:null}).eq("id",b.id).select().single();if(error){toast(friendlyErr(error));return;}myBiz=data;toast("Picture removed");renderDashboard();loadListings();};
   $("#d-cat").value=b.category;if($("#d-cat").value!==b.category){$("#d-cat").insertAdjacentHTML("beforeend",`<option>${esc(b.category)}</option>`);$("#d-cat").value=b.category;}
   $("#dForm").onsubmit=async e=>{e.preventDefault();if(!check(e.target))return;const btn=e.target.querySelector("button[type=submit]");busyBtn(btn,true,"Saving…");
     const {data,error}=await sb.from("businesses").update({name:val("#d-name"),category:$("#d-cat").value,area:val("#d-area"),phone:val("#d-phone"),whatsapp:val("#d-wa")||null,email:val("#d-email")||null,social:val("#d-social")||null,about:val("#d-about")||null}).eq("id",b.id).select().single();
@@ -1712,7 +1729,7 @@ async function renderAdmin(){
     const feat=x.featured_until&&new Date(x.featured_until).getTime()>now;
     const w=waNum(x.whatsapp||x.phone), owner=x.owner||{};
     return `<article class="adm-row" data-id="${x.id}">
-      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start"><div style="min-width:0"><h3 style="font-size:1.25rem">${esc(x.name)}</h3><span class="small">${esc(x.category)} · ${esc(x.area)} · registered ${fmtDay(x.created_at)}</span></div>
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start"><div style="display:flex;gap:12px;align-items:center;min-width:0">${avatar(x,"biz-av")}<div style="min-width:0"><h3 style="font-size:1.25rem">${esc(x.name)}</h3><span class="small">${esc(x.category)} · ${esc(x.area)} · registered ${fmtDay(x.created_at)}</span></div></div>
       <div class="badges">${pill(x.status)}${x.verified?`<span class="vbadge">${icon("i-check")} Verified</span>`:""}${feat?`<span class="fbadge">Featured to ${fmtDay(x.featured_until)}</span>`:""}${x.plan==="premium"?`<span class="fbadge">Premium</span>`:""}</div></div>
       <div class="kv"><div><span>Owner</span><br>${esc(owner.full_name||"-")} ${owner.phone?"· "+esc(owner.phone):""}</div><div><span>Business phone</span><br>${esc(x.phone)}${x.whatsapp?" · WA "+esc(x.whatsapp):""}</div><div><span>Email</span><br>${esc(x.email||"-")}</div><div><span>Social</span><br>${esc(x.social||"-")}</div></div>
       ${x.about?`<p class="small" style="color:var(--ink)">${esc(x.about)}</p>`:""}
@@ -1753,13 +1770,13 @@ function toListing(r){
   const cat=r.category||"Local business";
   return {id:r.id,name:r.name,slug:r.slug,cat,sector:(ALLCATS.find(c=>c.name.toLowerCase()===cat.toLowerCase())||{}).sector||"other",
     area:r.area||"",phone:r.phone||"",wa:r.whatsapp||r.phone||"",email:r.email||"",about:r.about||"",social:r.social||"",
-    verified:!!r.verified,featured:!!(r.featured_until&&new Date(r.featured_until).getTime()>Date.now()),premium:r.plan==="premium",
+    logo:r.logo_url||"",verified:!!r.verified,featured:!!(r.featured_until&&new Date(r.featured_until).getTime()>Date.now()),premium:r.plan==="premium",
     svcList:svc,services:svc.map(s=>s.name).join(", "),price:prices.length?"From "+kw(Math.min.apply(null,prices)):"",
     hoursList:(r.business_hours||[]).slice().sort((a,b)=>DAY_ORDER.indexOf(a.weekday)-DAY_ORDER.indexOf(b.weekday)),hours:""};
 }
 function loadListings(){
   if(!sb){LISTINGS=[];LOAD_STATE="error";renderBiz();renderRecent();if(currentView==="biz")renderProfile();return;}
-  sb.from("businesses").select("id,name,slug,category,area,phone,whatsapp,email,about,social,verified,featured_until,plan,created_at,services(id,name,price_from,duration_minutes,description,active,sort),business_hours(weekday,opens,closes,closed)")
+  sb.from("businesses").select("id,name,slug,category,area,phone,whatsapp,email,about,social,logo_url,verified,featured_until,plan,created_at,services(id,name,price_from,duration_minutes,description,active,sort),business_hours(weekday,opens,closes,closed)")
     .eq("status","approved").order("created_at",{ascending:false})
     .then(({data,error})=>{if(error)throw error;LISTINGS=(data||[]).map(toListing).sort((a,b)=>(b.featured-a.featured)||(b.premium-a.premium));LOAD_STATE="ready";})
     .catch(()=>{LISTINGS=LISTINGS||[];LOAD_STATE="error";})
@@ -1799,6 +1816,10 @@ async function downloadCertificate(b,btn){
   finally{busyBtn(btn,false);}
 }
 
+function squareJpeg(file,size){return new Promise((res,rej)=>{const u=URL.createObjectURL(file),i=new Image();
+  i.onload=()=>{const s=Math.min(i.naturalWidth,i.naturalHeight),c=document.createElement("canvas");c.width=c.height=size;const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,size,size);
+    x.drawImage(i,(i.naturalWidth-s)/2,(i.naturalHeight-s)/2,s,s,0,0,size,size);URL.revokeObjectURL(u);c.toBlob(b=>b?res(b):rej(new Error("Could not read that picture.")),"image/jpeg",0.85);};
+  i.onerror=()=>{URL.revokeObjectURL(u);rej(new Error("Could not read that picture. Try a JPG or PNG."));};i.src=u;});}
 /* ---------- Phase 2: online booking ---------- */
 const BSTAT={pending:"Waiting for reply",confirmed:"Confirmed",declined:"Declined",cancelled:"Cancelled",completed:"Completed",expired:"Expired",no_show:"No-show"};
 function bpill(s){return `<span class="pill b-${esc(s)}">${esc(BSTAT[s]||s)}</span>`;}
