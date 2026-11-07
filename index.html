@@ -313,6 +313,23 @@ p{margin:0}
 .svc-list-pub div{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:10px 0}
 .svc-list-pub div:first-child{border-top:0}
 .svc-list-pub small{display:block;color:var(--muted);font-size:.84rem}
+/* bookings */
+.bk-row{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:10px;min-width:0}
+.dash-card .bk-row{background:var(--paper)}
+.bk-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.bk-top b{display:block;overflow-wrap:anywhere}
+.pill.b-pending{background:#FFF4D6;color:#7A5300}
+.pill.b-confirmed,.pill.b-completed{background:#E3F4EA;color:#1F6B40}
+.pill.b-declined,.pill.b-no_show{background:#FCE4E4;color:#8A2323}
+.pill.b-cancelled,.pill.b-expired{background:#ECEEF3;color:#4A5568}
+.mini.dark{color:var(--ink);border-color:var(--line);background:var(--white)}
+.mini.dark:hover{color:var(--navy-900);border-color:var(--navy-600)}
+.mini.red{color:#8A2323;border-color:#F2C2C2}
+.tbl{overflow-x:auto}
+.tbl table{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1.5px solid var(--ink);white-space:nowrap}
+.tbl td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+.vbadge .seal{width:28px;height:28px;margin:-7px 2px -7px -6px}
 /* cta band */
 .cta{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
 @media (max-width:860px){.cta{grid-template-columns:1fr}}
@@ -1219,7 +1236,7 @@ function bizCard(b){
   const w=waNum(b.wa), t=waNum(b.phone||b.wa);
   return `<article class="biz spot" data-tilt>
    <div class="biz-top"><div class="biz-av" aria-hidden="true">${esc(b.name.replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div><div><h3>${esc(b.name)}</h3><span class="where">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div>
-   <div class="badges">${b.featured?`<span class="fbadge">Featured</span>`:""}${b.verified?`<span class="vbadge">${icon("i-check")} ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span></div>
+   <div class="badges">${b.featured?`<span class="fbadge">Featured</span>`:""}${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span></div>
    ${b.about||b.services?`<p>${esc(b.about||b.services)}</p>`:""}
    <div class="biz-acts">${w?`<a class="btn btn-wa" href="https://wa.me/${w}?text=${encodeURIComponent(bizMsg(b))}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}${t?`<a class="btn btn-navy" href="tel:+${t}">${icon("i-phone")} Call</a>`:""}</div>
    <a class="biz-more" href="#biz-${b.slug}">View business page ${icon("i-arrow")}</a></article>`;
@@ -1256,12 +1273,13 @@ function renderProfile(){
   const social=b.social?(/^https?:\/\//i.test(b.social)?`<a class="link" href="${esc(b.social)}" target="_blank" rel="noopener">${esc(b.social.replace(/^https?:\/\/(www\.)?/i,"").slice(0,48))}</a>`:esc(b.social)):"";
   box.innerHTML=`<div class="phead"><div class="phead-orb"></div><div class="wrap">
     <a class="back" href="#find">${icon("i-arrow")} All businesses</a>
-    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><div class="ph-av" aria-hidden="true">${esc(b.name.replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><div class="ph-av" aria-hidden="true">${esc(b.name.replace(/[^A-Za-z0-9]/g,"").charAt(0).toUpperCase()||"S")}</div>${b.verified?`<img src="${BADGE_SM}" alt="ServiceLink approved service provider badge" style="width:84px;height:84px">`:""}
     <div style="display:grid;gap:10px;min-width:0"><h1 style="font-size:clamp(2.2rem,6vw,4.2rem);overflow-wrap:anywhere">${esc(b.name)}</h1>
-    <div class="badges">${b.verified?`<span class="vbadge">${icon("i-check")} ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span><span class="catbadge">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div></div>
+    <div class="badges">${b.verified?`<span class="vbadge"><img class="seal" src="${BADGE_SM}" alt="">ServiceLink Verified</span>`:""}<span class="catbadge">${esc(b.cat)}</span><span class="catbadge">${icon("i-pin")} ${esc(b.area||"Lusaka")}</span></div></div></div>
   </div></div>
   <div class="sec" style="padding-top:36px"><div class="wrap prof">
     <div style="display:grid;gap:16px">
+      ${bookingCardHTML(b)}
       ${b.about?`<div class="prof-card"><h2>About</h2><p class="pre">${esc(b.about)}</p></div>`:""}
       ${(b.svcList||[]).length?`<div class="prof-card"><h2>Services and prices</h2><div class="svc-list-pub">${b.svcList.map(s=>`<div><span><b>${esc(s.name)}</b>${s.description?`<small>${esc(s.description)}</small>`:""}</span><b style="white-space:nowrap">${s.price_from!=null?"From "+kw(s.price_from):"Ask for price"}</b></div>`).join("")}</div></div>`:""}
       ${(b.hoursList||[]).length?`<div class="prof-card"><h2>Working hours</h2><div class="svc-list-pub">${b.hoursList.map(h=>`<div><span>${DAYS[h.weekday]}</span><b>${h.closed?"Closed":String(h.opens).slice(0,5)+" – "+String(h.closes).slice(0,5)}</b></div>`).join("")}</div></div>`:""}
@@ -1281,6 +1299,7 @@ function renderProfile(){
     </aside>
   </div></div>`;
   document.title=b.name+" · ServiceLink Zambia";
+  wireBooking(b);
 }
 const today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());
 $("#r-date").min=today.toISOString().slice(0,10);
@@ -1473,9 +1492,10 @@ function renderAccount(){
       ${role==="admin"?`<a class="btn btn-gold" href="#admin">Open admin dashboard ${icon("i-arrow","arr")}</a>`:""}
       ${myBiz?`<a class="btn btn-navy" href="#dashboard">Open business dashboard ${icon("i-arrow","arr")}</a>`:(role==="admin"?"":`<a class="btn btn-navy" href="#join">Register a business ${icon("i-arrow","arr")}</a>`)}
       <a class="btn btn-ghost" href="#find">Find a business</a>
-      <p class="small">Your booking history will appear here when online booking opens.</p>
+      <div style="display:grid;gap:10px;border-top:1px solid var(--line);padding-top:14px"><h2 style="font-size:1.3rem">My bookings</h2><div id="myBookings" style="display:grid;gap:10px"><p class="hint">Loading your bookings…</p></div></div>
       <button class="link" type="button" id="signOut" style="justify-self:start">Sign out</button></div>`;
     $("#signOut").onclick=async()=>{await sb.auth.signOut();acctMode="signin";session=null;me=null;myBiz=null;updateAuthUI();toast("Signed out");renderAccount();};
+    loadMyBookings();
     return;
   }
   const up=acctMode==="signup";
@@ -1586,6 +1606,17 @@ async function renderDashboard(){
     ${pendingHelp?`<div class="info" style="margin:0"><svg class="ic"><use href="#i-spark"/></svg><span>You asked for help with ${esc(pendingHelp.join(", "))}. <a href="${waLink("Hello ServiceLink, I have just registered "+b.name+" on ServiceLink. I would like help with: "+pendingHelp.join(", ")+".")}" target="_blank" rel="noopener">Message ServiceLink on WhatsApp</a> to get a quote.</span></div>`:""}
   </div>
 
+  ${b.status==="approved"?`<div class="dash-card"><h2>Your certificate and badge</h2>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><img src="${BADGE_SM}" alt="ServiceLink approved service provider badge" style="width:88px;height:88px"><p class="hint" style="flex:1;min-width:200px">You are an approved ServiceLink service provider. Download your certificate of approval and your badge to share on WhatsApp, Facebook and in your shop.</p></div>
+    <div class="adm-acts"><button class="btn btn-gold" type="button" data-cert>${icon("i-check")} Download certificate (PDF)</button><a class="btn btn-ghost" href="${BADGE_FILE}" download="ServiceLink-Approved-Badge.png">Download badge</a></div>
+    <p class="small">Certificate no. <b>${esc(certNo(b))}</b> · valid for one year from your approval date.</p></div>`:""}
+
+  <div class="dash-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Bookings</h2></div>
+    <p class="hint">A booking is only confirmed when you accept it. Requests you don't answer within 48 hours expire.</p>
+    <div class="tabs" id="bkTabs" role="group" aria-label="Bookings" style="justify-self:start"></div>
+    <div id="bkList" style="display:grid;gap:10px"><p class="hint">Loading bookings…</p></div>
+  </div>
+
   <div class="dash-card"><h2>Business details</h2>
     <form class="form" id="dForm" novalidate>
       <div class="f2"><div class="fld"><label for="d-name">Business name *</label><input id="d-name" required maxlength="80" value="${esc(b.name)}"><span class="err">Add your business name.</span></div>
@@ -1622,7 +1653,16 @@ async function renderDashboard(){
     </form>
   </div>
 
-  <div class="dash-card"><h2>Bookings</h2><p class="hint">Online booking requests will appear here when booking opens on ServiceLink. Until then, customers contact you directly by phone or WhatsApp.</p></div>`;
+  <div class="dash-card"><h2>Days you're closed</h2><p class="hint">Add holidays or fully booked days. Customers can't request these dates.</p>
+    <div id="clList"><p class="hint">Loading…</p></div>
+    <form class="form" id="clForm" novalidate style="border-top:1px solid var(--line);padding-top:14px">
+      <div class="f2"><div class="fld"><label for="cl-date">Date *</label><input id="cl-date" type="date" required min="${isoDate(lusakaNow())}"><span class="err">Choose a date.</span></div>
+      <div class="fld"><label for="cl-note">Note</label><input id="cl-note" maxlength="120" placeholder="e.g. Public holiday"></div></div>
+      <button class="btn btn-ghost" type="submit" style="justify-self:start">Add closed day</button>
+    </form>
+  </div>`;
+  loadBizBookings(b);loadClosures(b);
+  const cb=box.querySelector("[data-cert]");if(cb)cb.onclick=()=>downloadCertificate(myBiz,cb);
   $("#d-cat").value=b.category;if($("#d-cat").value!==b.category){$("#d-cat").insertAdjacentHTML("beforeend",`<option>${esc(b.category)}</option>`);$("#d-cat").value=b.category;}
   $("#dForm").onsubmit=async e=>{e.preventDefault();if(!check(e.target))return;const btn=e.target.querySelector("button[type=submit]");busyBtn(btn,true,"Saving…");
     const {data,error}=await sb.from("businesses").update({name:val("#d-name"),category:$("#d-cat").value,area:val("#d-area"),phone:val("#d-phone"),whatsapp:val("#d-wa")||null,email:val("#d-email")||null,social:val("#d-social")||null,about:val("#d-about")||null}).eq("id",b.id).select().single();
@@ -1662,8 +1702,10 @@ async function renderAdmin(){
   const tile=(n,l)=>`<div class="tile"><span>${l}</span><b>${Number(n||0).toLocaleString("en-US")}</b></div>`;
   $("#admTiles").innerHTML=tile(bz.pending,"Awaiting approval")+tile(bz.approved,"Live businesses")+tile(Object.values(bk).reduce((a,c)=>a+c,0),"Booking requests")+tile((bk.confirmed||0)+(bk.completed||0),"Confirmed + completed")+tile(stats.customers,"Customers");
   const groups={pending:list.filter(x=>x.status==="pending"),approved:list.filter(x=>x.status==="approved"),other:list.filter(x=>x.status==="rejected"||x.status==="suspended")};
-  $("#admTabs").innerHTML=[["pending","Awaiting approval"],["approved","Live"],["other","Not approved / suspended"]].map(([k,l])=>`<button type="button" data-at="${k}" aria-pressed="${adminTab===k}">${l} (${groups[k].length})</button>`).join("");
+  $("#admTabs").innerHTML=[["pending","Awaiting approval"],["approved","Live"],["other","Not approved / suspended"],["bookings","Bookings"],["activity","Reports"]].map(([k,l])=>`<button type="button" data-at="${k}" aria-pressed="${adminTab===k}">${l}${groups[k]?" ("+groups[k].length+")":""}</button>`).join("");
   $("#admTabs").onclick=e=>{const t=e.target.closest("[data-at]");if(!t)return;adminTab=t.dataset.at;renderAdmin();};
+  if(adminTab==="bookings"){renderAdminBookings();return;}
+  if(adminTab==="activity"){renderAdminActivity(stats);return;}
   const now=Date.now();
   const rows=groups[adminTab];
   $("#admList").innerHTML=rows.length?rows.map(x=>{
@@ -1679,7 +1721,7 @@ async function renderAdmin(){
       <div class="adm-acts">
         ${x.status!=="approved"?`<button class="btn btn-gold" type="button" data-act="approve">${icon("i-check")} Approve</button>`:""}
         ${x.status==="pending"?`<button class="btn btn-ghost" type="button" data-act="reject">Not approve</button>`:""}
-        ${x.status==="approved"?`<button class="btn btn-ghost" type="button" data-act="verify">${x.verified?"Remove verified":"Mark verified"}</button><button class="btn btn-ghost" type="button" data-act="${feat?"unfeature":"feature"}">${feat?"Remove featured":"Feature 30 days"}</button><button class="btn btn-ghost" type="button" data-act="plan">${x.plan==="premium"?"Set to free":"Set to premium"}</button><a class="btn btn-ghost" href="#biz-${esc(x.slug)}">View page</a><button class="btn btn-ghost" type="button" data-act="suspend">Suspend</button>`:""}
+        ${x.status==="approved"?`<button class="btn btn-ghost" type="button" data-act="verify">${x.verified?"Remove verified":"Mark verified"}</button><button class="btn btn-ghost" type="button" data-act="${feat?"unfeature":"feature"}">${feat?"Remove featured":"Feature 30 days"}</button><button class="btn btn-ghost" type="button" data-act="plan">${x.plan==="premium"?"Set to free":"Set to premium"}</button><a class="btn btn-ghost" href="#biz-${esc(x.slug)}">View page</a><button class="btn btn-ghost" type="button" data-act="cert">Certificate</button><button class="btn btn-ghost" type="button" data-act="suspend">Suspend</button>`:""}
         ${w?`<a class="btn btn-wa" href="https://wa.me/${w}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}
       </div>
       <div class="reject-box" hidden><div class="fld"><label>Reason (the business will see this)</label><input data-note maxlength="200" placeholder="e.g. Please add a working phone number"></div><div class="adm-acts"><button class="btn btn-navy" type="button" data-act="reject-go">Confirm</button><button class="btn btn-ghost" type="button" data-act="reject-cancel">Cancel</button></div></div>
@@ -1688,6 +1730,7 @@ async function renderAdmin(){
     const a=e.target.closest("[data-act]");if(!a)return;const row=a.closest(".adm-row"),id=row.dataset.id,x=list.find(y=>y.id===id),act=a.dataset.act;
     if(act==="reject"||act==="suspend"){row.querySelector(".reject-box").hidden=false;row.querySelector(".reject-box").dataset.mode=act;row.querySelector("[data-note]").focus();return;}
     if(act==="reject-cancel"){row.querySelector(".reject-box").hidden=true;return;}
+    if(act==="cert"){downloadCertificate(x,a);return;}
     const p={p_business:id};
     if(act==="approve")p.p_status="approved";
     if(act==="reject-go"){p.p_status=row.querySelector(".reject-box").dataset.mode==="suspend"?"suspended":"rejected";p.p_note=row.querySelector("[data-note]").value.trim()||null;}
@@ -1721,6 +1764,189 @@ function loadListings(){
     .then(({data,error})=>{if(error)throw error;LISTINGS=(data||[]).map(toListing).sort((a,b)=>(b.featured-a.featured)||(b.premium-a.premium));LOAD_STATE="ready";})
     .catch(()=>{LISTINGS=LISTINGS||[];LOAD_STATE="error";})
     .finally(()=>{renderBiz();renderRecent();if(currentView==="biz")renderProfile();if(window.ScrollTrigger)ScrollTrigger.refresh();});
+}
+
+/* ---------- certificate & badge ---------- */
+const CERT_TPL="certificate-template.jpg", BADGE_FILE="servicelink-badge.png", BADGE_SM="data:image/png;base64,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";
+function certNo(b){const y=new Date(b.approved_at||b.created_at||Date.now()).getFullYear();return "SL-"+y+"-"+String(b.id||"").replace(/-/g,"").slice(0,6).toUpperCase();}
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error("The certificate design could not be loaded. Check certificate-template.jpg is uploaded to GitHub."));i.src=src;});}
+function loadScript(src){return new Promise((res,rej)=>{if(window.jspdf)return res();const sc=document.createElement("script");sc.src=src;sc.onload=res;sc.onerror=()=>rej(new Error("The PDF tool could not load. Check your connection and try again."));document.head.appendChild(sc);});}
+function fitFont(ctx,text,maxW,size,font){let z=size;while(z>18){ctx.font=font.replace("{s}",z);if(ctx.measureText(text).width<=maxW)break;z-=2;}}
+async function makeCertificate(b){
+  const img=await loadImg(CERT_TPL),W=img.naturalWidth,H=img.naturalHeight,c=document.createElement("canvas");
+  c.width=W;c.height=H;const x=c.getContext("2d");x.drawImage(img,0,0);
+  try{await document.fonts.ready;}catch(e){}
+  const appr=new Date(b.approved_at||Date.now()),until=new Date(appr);until.setFullYear(until.getFullYear()+1);
+  const d=t=>t.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+  x.fillStyle="#0B2A5C";x.textAlign="center";x.textBaseline="alphabetic";
+  fitFont(x,b.name,W*0.53,Math.round(H*0.052),'bold {s}px "Times New Roman", Georgia, serif');x.fillText(b.name,W*0.5,H*0.468);
+  fitFont(x,b.category,W*0.43,Math.round(H*0.034),'600 {s}px Figtree, Arial, sans-serif');x.fillText(b.category,W*0.5,H*0.596);
+  x.font=`600 ${Math.round(H*0.019)}px Figtree, Arial, sans-serif`;x.fillText(certNo(b),W*0.8616,H*0.124);
+  x.textAlign="left";x.font=`600 ${Math.round(H*0.022)}px Figtree, Arial, sans-serif`;
+  x.fillText(d(appr),W*0.0832,H*0.746);x.fillText(d(until),W*0.0832,H*0.824);
+  return c;
+}
+async function downloadCertificate(b,btn){
+  busyBtn(btn,true,"Preparing…");
+  try{
+    const c=await makeCertificate(b);
+    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
+    const pdf=new window.jspdf.jsPDF({orientation:"landscape",unit:"pt",format:"a4"});
+    pdf.addImage(c.toDataURL("image/jpeg",0.92),"JPEG",0,0,841.89,595.28);
+    pdf.save("ServiceLink-Certificate-"+slugify(b.name)+".pdf");
+    toast("Certificate downloaded");
+  }catch(err){toast(friendlyErr(err));}
+  finally{busyBtn(btn,false);}
+}
+
+/* ---------- Phase 2: online booking ---------- */
+const BSTAT={pending:"Waiting for reply",confirmed:"Confirmed",declined:"Declined",cancelled:"Cancelled",completed:"Completed",expired:"Expired",no_show:"No-show"};
+function bpill(s){return `<span class="pill b-${esc(s)}">${esc(BSTAT[s]||s)}</span>`;}
+function t5(t){return t?String(t).slice(0,5):"";}
+function fmtWhen(d,t){try{const x=new Date(d+"T"+t5(t)+":00");return x.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric"})+" at "+t5(t);}catch(e){return d+" "+t5(t);}}
+function lusakaNow(){return new Date(Date.now()+(120+new Date().getTimezoneOffset())*60000);}
+function isoDate(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function slotsFor(b,dateStr,closures){
+  if(!dateStr)return {slots:[],msg:""};
+  if(closures.includes(dateStr))return {slots:[],msg:"The business is closed on this date. Please choose another day."};
+  const wd=new Date(dateStr+"T12:00:00").getDay();
+  const hl=b.hoursList||[];let o="07:00",c="19:00";
+  if(hl.length){const h=hl.find(x=>x.weekday===wd);if(!h||h.closed)return {slots:[],msg:`The business is closed on ${DAYS[wd]}s. Please choose another day.`};o=t5(h.opens);c=t5(h.closes);}
+  const toM=s=>{const p=s.split(":").map(Number);return p[0]*60+p[1];},fm=m=>String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+  const now=lusakaNow(),today=isoDate(now),nowM=now.getHours()*60+now.getMinutes(),out=[];
+  for(let m=toM(o);m<toM(c);m+=30){if(dateStr===today&&m<=nowM+30)continue;out.push(fm(m));}
+  return {slots:out,msg:out.length?"":"No times left on this day. Please choose another day."};
+}
+function bookingCardHTML(b){
+  const svcs=b.svcList||[];if(!svcs.length||!sb)return "";
+  const now=lusakaNow(),max=new Date(now.getTime()+120*864e5);
+  return `<div class="prof-card" id="bookCard"><h2>Book online</h2>
+   <p class="small">Send a booking request. It is <b>not confirmed until ${esc(b.name)} accepts it</b>. You pay the business directly.</p>
+   <form class="form" id="bkForm" novalidate>
+    <div class="fld"><label for="bk-svc">Service *</label><select id="bk-svc" required>${svcs.map(s=>`<option value="${esc(s.id)}">${esc(s.name)}${s.price_from!=null?" · from "+kw(s.price_from):""}</option>`).join("")}</select></div>
+    <div class="f2"><div class="fld"><label for="bk-date">Date *</label><input id="bk-date" type="date" required min="${isoDate(now)}" max="${isoDate(max)}"><span class="err">Choose a date.</span></div>
+    <div class="fld"><label for="bk-time">Time *</label><select id="bk-time" required><option value="">Choose a date first</option></select><span class="err">Choose a time.</span></div></div>
+    <p class="small" id="bkSlotMsg" hidden></p>
+    ${session?`<div class="f2"><div class="fld"><label for="bk-name">Your name *</label><input id="bk-name" required autocomplete="name"><span class="err">Add your name.</span></div>
+    <div class="fld"><label for="bk-phone">Phone *</label><input id="bk-phone" type="tel" required autocomplete="tel"><span class="err">Add a Zambian phone number.</span></div></div>
+    <div class="fld"><label for="bk-notes">Notes for the business</label><textarea id="bk-notes" maxlength="600" placeholder="Your address, what needs doing, number of guests…"></textarea></div>`:`<p class="small">You need a free ServiceLink account to book, so you can track your request.</p>`}
+    <p class="form-msg" id="bkMsg" hidden></p>
+    <button class="btn btn-navy" type="submit">${session?"Send booking request":"Sign in to book"}</button>
+    ${session?"":`<button class="link" type="button" id="bkSignup" style="justify-self:start">New to ServiceLink? Create a free account</button>`}
+   </form><div id="bkDone" class="done" hidden></div></div>`;
+}
+async function wireBooking(b){
+  const f=$("#bkForm");if(!f)return;
+  if(session&&me){if(me.full_name&&$("#bk-name"))$("#bk-name").value=me.full_name;if(me.phone&&$("#bk-phone"))$("#bk-phone").value=me.phone;}
+  let closures=[];
+  try{const {data}=await sb.from("business_closures").select("closed_on").eq("business_id",b.id);closures=(data||[]).map(x=>x.closed_on);}catch(e){}
+  const upd=()=>{const r=slotsFor(b,$("#bk-date").value,closures),sel=$("#bk-time"),prev=sel.value;
+    sel.innerHTML=`<option value="">${$("#bk-date").value?(r.slots.length?"Choose a time":"No times available"):"Choose a date first"}</option>`+r.slots.map(s=>`<option${s===prev?" selected":""}>${s}</option>`).join("");
+    const m=$("#bkSlotMsg");m.hidden=!r.msg;m.textContent=r.msg;};
+  $("#bk-date").addEventListener("change",upd);
+  const su=$("#bkSignup");if(su)su.onclick=()=>{acctMode="signup";acctType="customer";afterLogin="biz-"+b.slug;location.hash="account";};
+  f.onsubmit=async e=>{
+    e.preventDefault();
+    if(!session){acctMode="signin";afterLogin="biz-"+b.slug;location.hash="account";return;}
+    if(!check(f))return;
+    const btn=f.querySelector("button[type=submit]");setMsg($("#bkMsg"),"");busyBtn(btn,true,"Sending…");
+    const {data,error}=await sb.rpc("create_booking",{p_service:$("#bk-svc").value,p_date:$("#bk-date").value,p_time:$("#bk-time").value,p_name:val("#bk-name"),p_phone:val("#bk-phone"),p_notes:val("#bk-notes")||null});
+    busyBtn(btn,false);
+    if(error){setMsg($("#bkMsg"),friendlyErr(error));return;}
+    const k=Array.isArray(data)?data[0]:data,w=waNum(b.wa);
+    const msg=`Hello ${b.name}, I have sent you a booking request on ServiceLink.\n\nRef: ${k.ref}\nService: ${k.service_name}\nWhen: ${fmtWhen(k.booking_date,k.start_time)}\n\nPlease accept or decline it in your ServiceLink dashboard.`;
+    f.hidden=true;const d=$("#bkDone");d.hidden=false;
+    d.innerHTML=`<div class="ref"><span class="mono" style="color:var(--on-navy-muted)">Request sent</span><b>${esc(k.ref)}</b></div>
+      <p class="hint"><b>Waiting for ${esc(b.name)} to reply.</b> Your booking is only confirmed once they accept it. Track it under <a href="#account">My account → My bookings</a>.</p>
+      <div class="adm-acts">${w?`<a class="btn btn-wa" href="https://wa.me/${w}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${icon("i-wa")} Let them know on WhatsApp</a>`:""}<a class="btn btn-ghost" href="#account">My bookings</a></div>`;
+    toast("Booking request sent");
+    if(HAS_G&&!RM)gsap.from(d.children,{y:18,opacity:0,stagger:.07,duration:.5});
+  };
+}
+
+/* customer: my bookings */
+async function loadMyBookings(){
+  const el=$("#myBookings");if(!el||!sb||!session)return;
+  try{await sb.rpc("expire_bookings");}catch(e){}
+  const {data,error}=await sb.from("bookings").select("*, business:businesses(name,slug,phone,whatsapp)").eq("customer_id",session.user.id).order("created_at",{ascending:false});
+  if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
+  if(!data.length){el.innerHTML=`<p class="hint">No bookings yet. <a href="#find">Find a business</a> and tap <b>Book online</b> on its page.</p>`;return;}
+  el.innerHTML=data.map(k=>{const bz=k.business||{},w=waNum(bz.whatsapp||bz.phone),can=k.status==="pending"||k.status==="confirmed";
+    const help={pending:"The business has not replied yet. This is a request, not a confirmed booking.",confirmed:"Confirmed by the business. Pay them directly.",declined:"The business could not take this booking.",expired:"The business did not reply in time, so this request has expired.",cancelled:"This booking was cancelled.",completed:"Job completed.",no_show:"Marked as a no-show by the business."}[k.status]||"";
+    return `<div class="bk-row"><div class="bk-top"><div style="min-width:0"><b>${esc(k.service_name)}</b><span class="small">${esc(bz.name||"Business")} · ${esc(fmtWhen(k.booking_date,k.start_time))}</span></div>${bpill(k.status)}</div>
+      <span class="small">Ref <b>${esc(k.ref)}</b>${k.price_from!=null?" · from "+kw(k.price_from):""}. ${esc(help)}</span>
+      ${k.business_note?`<p class="small"><b>Note from the business:</b> ${esc(k.business_note)}</p>`:""}
+      <div class="adm-acts">${w?`<a class="mini dark" href="https://wa.me/${w}?text=${encodeURIComponent("Hello "+(bz.name||"")+", about my ServiceLink booking "+k.ref+".")}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}${bz.slug?`<a class="mini dark" href="#biz-${esc(bz.slug)}">View business</a>`:""}${can?`<button class="mini dark red" type="button" data-cancel="${esc(k.id)}">Cancel</button>`:""}</div></div>`;}).join("");
+  el.onclick=async e=>{const c=e.target.closest("[data-cancel]");if(!c)return;if(c.dataset.sure!=="1"){c.dataset.sure="1";c.textContent="Tap again to cancel";return;}
+    const {error}=await sb.rpc("update_booking_status",{p_booking:c.dataset.cancel,p_status:"cancelled"});if(error){toast(friendlyErr(error));return;}toast("Booking cancelled");loadMyBookings();};
+}
+
+/* business: booking requests */
+let bizBkTab="requests";
+async function loadBizBookings(b){
+  const el=$("#bkList");if(!el)return;
+  try{await sb.rpc("expire_bookings");}catch(e){}
+  const {data,error}=await sb.from("bookings").select("*").eq("business_id",b.id).order("booking_date").order("start_time");
+  if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
+  const all=data||[];
+  const g={requests:all.filter(k=>k.status==="pending"),upcoming:all.filter(k=>k.status==="confirmed"),past:all.filter(k=>!["pending","confirmed"].includes(k.status)).reverse()};
+  $("#bkTabs").innerHTML=[["requests","New requests"],["upcoming","Confirmed"],["past","Past"]].map(([k,l])=>`<button type="button" data-bt="${k}" aria-pressed="${bizBkTab===k}">${l} (${g[k].length})</button>`).join("");
+  $("#bkTabs").onclick=e=>{const t=e.target.closest("[data-bt]");if(!t)return;bizBkTab=t.dataset.bt;loadBizBookings(b);};
+  const rows=g[bizBkTab];
+  const empty={requests:"No new requests. When a customer books, the request appears here for you to accept or decline.",upcoming:"No confirmed bookings yet.",past:"Nothing here yet."}[bizBkTab];
+  el.innerHTML=rows.length?rows.map(k=>{
+    const w=waNum(k.customer_phone),when=fmtWhen(k.booking_date,k.start_time);
+    const wmsg={pending:`Hello ${k.customer_name}, this is ${b.name}. About your ServiceLink booking request ${k.ref} for ${k.service_name} on ${when}:`,
+      confirmed:`Hello ${k.customer_name}, this is ${b.name}. Your booking ${k.ref} for ${k.service_name} on ${when} is confirmed. See you then.`,
+      declined:`Hello ${k.customer_name}, this is ${b.name}. Sorry, we can't take your booking ${k.ref} for ${when}.`}[k.status]||`Hello ${k.customer_name}, this is ${b.name}, about your ServiceLink booking ${k.ref}.`;
+    return `<div class="bk-row" data-id="${esc(k.id)}"><div class="bk-top"><div style="min-width:0"><b>${esc(k.service_name)}</b><span class="small">${esc(when)}</span></div>${bpill(k.status)}</div>
+      <div class="kv"><div><span>Customer</span><br>${esc(k.customer_name)}</div><div><span>Phone</span><br><b style="user-select:all">${esc(k.customer_phone)}</b></div><div><span>Reference</span><br>${esc(k.ref)}</div></div>
+      ${k.notes?`<p class="small" style="color:var(--ink)"><b>Customer's note:</b> ${esc(k.notes)}</p>`:""}
+      ${k.business_note?`<p class="small"><b>Your note:</b> ${esc(k.business_note)}</p>`:""}
+      ${k.status==="pending"?`<div class="fld"><label for="note-${esc(k.id)}">Message to the customer <em>(optional)</em></label><input id="note-${esc(k.id)}" data-note maxlength="300" placeholder="e.g. Please share your exact address"></div>
+        <div class="adm-acts"><button class="btn btn-gold" type="button" data-bk="accept">${icon("i-check")} Accept</button><button class="btn btn-ghost" type="button" data-bk="decline">Decline</button></div>`:""}
+      ${k.status==="confirmed"?`<div class="adm-acts"><button class="btn btn-navy" type="button" data-bk="completed">Mark completed</button><button class="btn btn-ghost" type="button" data-bk="no_show">Customer didn't come</button><button class="btn btn-ghost" type="button" data-bk="cancelled">Cancel booking</button></div>`:""}
+      <div class="adm-acts">${w?`<a class="mini dark" href="https://wa.me/${w}?text=${encodeURIComponent(wmsg)}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp customer</a><a class="mini dark" href="tel:+${w}">${icon("i-phone")} Call</a>`:""}</div></div>`;}).join(""):`<p class="hint">${empty}</p>`;
+  el.onclick=async e=>{const a=e.target.closest("[data-bk]");if(!a)return;const row=a.closest(".bk-row"),id=row.dataset.id,act=a.dataset.bk;
+    if(act==="cancelled"&&a.dataset.sure!=="1"){a.dataset.sure="1";a.textContent="Tap again to cancel";return;}
+    busyBtn(a,true,"Saving…");
+    const note=row.querySelector("[data-note]")?row.querySelector("[data-note]").value.trim():"";
+    const r=(act==="accept"||act==="decline")?await sb.rpc("respond_to_booking",{p_booking:id,p_accept:act==="accept",p_note:note||null}):await sb.rpc("update_booking_status",{p_booking:id,p_status:act});
+    if(r.error){busyBtn(a,false);toast(friendlyErr(r.error));return;}
+    toast({accept:"Booking confirmed. Let the customer know on WhatsApp.",decline:"Request declined",completed:"Marked as completed",no_show:"Marked as no-show",cancelled:"Booking cancelled"}[act]);
+    if(act==="accept")bizBkTab="upcoming";
+    loadBizBookings(b);};
+}
+async function loadClosures(b){
+  const el=$("#clList");if(!el)return;
+  const {data}=await sb.from("business_closures").select("*").eq("business_id",b.id).order("closed_on");
+  const today=isoDate(lusakaNow()),list=(data||[]).filter(x=>x.closed_on>=today);
+  el.innerHTML=list.length?list.map(x=>`<div class="svc-row"><div><b>${esc(new Date(x.closed_on+"T12:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"}))}</b>${x.note?`<span class="small">${esc(x.note)}</span>`:""}</div><span></span><button class="mini dark red" type="button" data-cl="${esc(x.closed_on)}">Remove</button></div>`).join(""):`<p class="hint">No closed days added.</p>`;
+  el.onclick=async e=>{const r=e.target.closest("[data-cl]");if(!r)return;const {error}=await sb.from("business_closures").delete().eq("business_id",b.id).eq("closed_on",r.dataset.cl);if(error){toast(friendlyErr(error));return;}toast("Closed day removed");loadClosures(b);};
+  const f=$("#clForm");f.onsubmit=async e=>{e.preventDefault();if(!check(f))return;const {error}=await sb.from("business_closures").upsert({business_id:b.id,closed_on:$("#cl-date").value,note:val("#cl-note")||null},{onConflict:"business_id,closed_on"});
+    if(error){toast(friendlyErr(error));return;}f.reset();toast("Closed day added");loadClosures(b);};
+}
+
+/* admin: bookings and activity */
+async function renderAdminBookings(){
+  const el=$("#admList");el.innerHTML=`<p class="hint">Loading bookings…</p>`;
+  const {data,error}=await sb.from("bookings").select("*, business:businesses(name,slug)").order("created_at",{ascending:false}).limit(300);
+  if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
+  const all=data||[];let f="all";
+  const draw=()=>{const rows=all.filter(k=>f==="all"||k.status===f);
+    el.innerHTML=`<div class="fld" style="max-width:260px"><label for="admBkFilter">Show</label><select id="admBkFilter"><option value="all">All bookings (${all.length})</option>${Object.keys(BSTAT).map(s=>`<option value="${s}"${f===s?" selected":""}>${BSTAT[s]} (${all.filter(k=>k.status===s).length})</option>`).join("")}</select></div>`+
+    (rows.length?rows.map(k=>`<div class="bk-row"><div class="bk-top"><div style="min-width:0"><b>${esc(k.service_name)}</b><span class="small">${esc((k.business||{}).name||"Business")} · ${esc(fmtWhen(k.booking_date,k.start_time))}</span></div>${bpill(k.status)}</div>
+      <span class="small">Ref ${esc(k.ref)} · Customer ${esc(k.customer_name)} (${esc(k.customer_phone)}) · requested ${fmtDay(k.created_at)}</span></div>`).join(""):`<p class="hint">No bookings to show.</p>`);
+    $("#admBkFilter").value=f;$("#admBkFilter").onchange=e=>{f=e.target.value;draw();};};
+  draw();
+}
+async function renderAdminActivity(stats){
+  const el=$("#admList");el.innerHTML=`<p class="hint">Loading activity…</p>`;
+  const {data,error}=await sb.rpc("admin_business_activity");
+  if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
+  const months=(stats.by_month||[]);
+  el.innerHTML=`<div class="dash-card"><h2>Bookings by month</h2>${months.length?`<div class="tbl"><table><thead><tr><th>Month</th><th>Requests</th><th>Confirmed</th><th>Completed</th></tr></thead><tbody>${months.map(m=>`<tr><td>${esc(m.month)}</td><td>${m.requests}</td><td>${m.confirmed}</td><td>${m.completed}</td></tr>`).join("")}</tbody></table></div>`:`<p class="hint">No bookings yet.</p>`}</div>
+  <div class="dash-card"><h2>Business activity</h2><p class="hint">How each business handles its booking requests.</p>${(data||[]).length?`<div class="tbl"><table><thead><tr><th>Business</th><th>Requests</th><th>Waiting</th><th>Confirmed</th><th>Completed</th><th>Declined</th><th>Expired</th><th>Avg reply</th><th>Last request</th></tr></thead><tbody>${data.map(a=>`<tr><td>${esc(a.name)}<br><span class="small">${esc(a.status)}</span></td><td>${a.requests}</td><td>${a.pending}</td><td>${a.confirmed}</td><td>${a.completed}</td><td>${a.declined}</td><td>${a.expired}</td><td>${a.avg_reply_hours!=null?a.avg_reply_hours+" h":"-"}</td><td>${a.last_booking?fmtDay(a.last_booking):"-"}</td></tr>`).join("")}</tbody></table></div>`:`<p class="hint">No businesses yet.</p>`}</div>`;
 }
 
 /* ---------- routing ---------- */
