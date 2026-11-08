@@ -2053,7 +2053,7 @@ async function renderAdminActivity(stats){
 }
 
 /* ---------- Phase 3: reviews, plans, payments, gallery, backup ---------- */
-const PAY={airtel:{label:"Airtel Money",num:"097 965 0844"},mtn:{label:"MTN MoMo",num:"076 492 2544"}};
+const PAY={airtel:{label:"Airtel Money",num:"097 965 0844",name:"Lisa Mwale"},mtn:{label:"MTN MoMo",num:"076 492 2544",name:"Lisa Mwale"}};
 function stars(n,size){const r=Math.round(Number(n)||0);let s="";for(let i=1;i<=5;i++)s+=`<span class="star${i<=r?" on":""}"${size?` style="font-size:${size}"`:""}>★</span>`;return `<span class="stars" aria-label="${r} out of 5 stars">${s}</span>`;}
 function ratingLine(b){return b.ratingCount?`<span class="rating">${stars(b.rating)} <b>${Number(b.rating).toFixed(1)}</b> <span>(${b.ratingCount} review${b.ratingCount===1?"":"s"})</span></span>`:"";}
 
@@ -2113,8 +2113,8 @@ async function loadPromote(b){
    <div class="pay-steps">
      <b>How to pay</b>
      <ol>
-       <li>Send <b id="payAmt">${kw(plans[0].price)}</b> by mobile money to ServiceLink:<div class="pay-nums">${Object.entries(PAY).map(([k,v])=>`<div class="pay-num"><span>${v.label}</span><b>${v.num}</b><button class="mini dark" type="button" data-copy="${v.num.replace(/\s/g,"")}">${icon("i-copy")} Copy</button></div>`).join("")}</div></li>
-       <li>Wait for the confirmation SMS and note the <b>transaction ID</b>.</li>
+       <li>Send <b id="payAmt">${kw(plans[0].price)}</b> by mobile money to ServiceLink:<div class="pay-nums">${Object.entries(PAY).map(([k,v])=>`<div class="pay-num"><span>${v.label}</span><span style="display:grid;gap:2px;min-width:0"><b>${v.num}</b><span style="font-size:.8rem;min-width:0">Name: <b style="font-size:.8rem;letter-spacing:0">${v.name}</b></span></span><button class="mini dark" type="button" data-copy="${v.num.replace(/\s/g,"")}">${icon("i-copy")} Copy</button></div>`).join("")}</div></li>
+       <li>Check the name shows as <b>Lisa Mwale</b> before you confirm. Then wait for the confirmation SMS and note the <b>transaction ID</b>.</li>
        <li>Fill in the form below. Your plan switches on as soon as ServiceLink confirms the payment.</li>
      </ol>
    </div>
