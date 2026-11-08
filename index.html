@@ -1687,6 +1687,7 @@ async function renderDashboard(){
 
   <div class="dash-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Bookings</h2></div>
     <p class="hint">A booking is only confirmed when you accept it. Requests you don't answer within 48 hours expire.</p>
+    <div class="info" style="margin:0"><svg class="ic"><use href="#i-spark"/></svg><span><b>New booking requests are emailed to you</b> at <b>${esc(b.email||(session&&session.user&&session.user.email)||"your email")}</b> from <b>servicelinkzm@gmail.com</b>. Save servicelinkzm@gmail.com as a contact so the emails reach your inbox. If you don't see one, check your <b>Spam</b> folder and tap <b>Not spam</b>.</span></div>
     <div class="tabs" id="bkTabs" role="group" aria-label="Bookings" style="justify-self:start"></div>
     <div id="bkList" style="display:grid;gap:10px"><p class="hint">Loading bookings…</p></div>
   </div>
