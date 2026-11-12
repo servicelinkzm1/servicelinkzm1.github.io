@@ -9,7 +9,7 @@
 <meta name="description" content="ServiceLink Zambia is a local business discovery and promotion platform connecting people with businesses, products and service providers across Lusaka. ServiceLink Business Solutions offers advertising, branding, business support, marketing materials, document organising and digital products. Discover. Connect. Grow.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@500;600;700&display=swap">
 <style>
 /* Layout: deep-navy "map room" hero with a live globe of Zambia, alternating with cool-white editorial bands; one gold marquee band; content on a 1200px grid */
 :root{
@@ -1678,7 +1678,7 @@ async function renderDashboard(){
 
   ${b.status==="approved"?`<div class="dash-card"><h2>Your certificate and badge</h2>
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><img src="${BADGE_SM}" alt="ServiceLink approved service provider badge" style="width:88px;height:88px"><p class="hint" style="flex:1;min-width:200px">You are an approved ServiceLink service provider. Download your certificate of approval and your badge to share on WhatsApp, Facebook and in your shop.</p></div>
-    <div class="adm-acts"><button class="btn btn-gold" type="button" data-cert>${icon("i-check")} Download certificate (PDF)</button><a class="btn btn-ghost" href="${BADGE_FILE}" download="ServiceLink-Approved-Badge.png">Download badge</a></div>
+    <div class="adm-acts"><button class="btn btn-gold" type="button" data-cert>${icon("i-check")} Download certificate (PDF)</button><button class="btn btn-navy" type="button" data-wpack>${icon("i-check")} Download welcome pack (PDF)</button><a class="btn btn-ghost" href="${BADGE_FILE}" download="ServiceLink-Approved-Badge.png">Download badge</a></div>
     <p class="small">Certificate no. <b>${esc(certNo(b))}</b> · valid for one year from your approval date.</p></div>`:""}
 
   <div class="dash-card"><h2>Promote your business</h2>
@@ -1746,6 +1746,7 @@ async function renderDashboard(){
   </div>`;
   loadBizBookings(b);loadClosures(b);loadPromote(b);loadGallery(b);loadBizReviews(b);
   const cb=box.querySelector("[data-cert]");if(cb)cb.onclick=()=>downloadCertificate(myBiz,cb);
+  const wb=box.querySelector("[data-wpack]");if(wb)wb.onclick=()=>downloadWelcomePack(myBiz,(me&&me.full_name)||"",wb);
   const lf=$("#logoFile");if(lf)lf.onchange=async()=>{const f=lf.files[0];if(!f)return;if(!/^image\//.test(f.type)){toast("Please choose a picture file.");return;}
     toast("Uploading your picture…");
     try{const blob=await squareJpeg(f,400),path=session.user.id+"/"+Date.now()+".jpg";
@@ -1818,7 +1819,7 @@ async function renderAdmin(){
       <div class="adm-acts">
         ${x.status!=="approved"?`<button class="btn btn-gold" type="button" data-act="approve">${icon("i-check")} Approve</button>`:""}
         ${x.status==="pending"?`<button class="btn btn-ghost" type="button" data-act="reject">Not approve</button>`:""}
-        ${x.status==="approved"?`<button class="btn btn-ghost" type="button" data-act="verify">${x.verified?"Remove verified":"Mark verified"}</button><button class="btn btn-ghost" type="button" data-act="${feat?"unfeature":"feature"}">${feat?"Remove featured":"Feature 30 days"}</button><button class="btn btn-ghost" type="button" data-act="plan">${x.plan==="premium"?"Set to free":"Set to premium"}</button><a class="btn btn-ghost" href="#biz-${esc(x.slug)}">View page</a><button class="btn btn-ghost" type="button" data-act="cert">Certificate</button><button class="btn btn-ghost" type="button" data-act="suspend">Suspend</button>`:""}
+        ${x.status==="approved"?`<button class="btn btn-ghost" type="button" data-act="verify">${x.verified?"Remove verified":"Mark verified"}</button><button class="btn btn-ghost" type="button" data-act="${feat?"unfeature":"feature"}">${feat?"Remove featured":"Feature 30 days"}</button><button class="btn btn-ghost" type="button" data-act="plan">${x.plan==="premium"?"Set to free":"Set to premium"}</button><a class="btn btn-ghost" href="#biz-${esc(x.slug)}">View page</a><button class="btn btn-ghost" type="button" data-act="cert">Certificate</button><button class="btn btn-ghost" type="button" data-act="wpack">Welcome pack</button><button class="btn btn-ghost" type="button" data-act="suspend">Suspend</button>`:""}
         ${w?`<a class="btn btn-wa" href="https://wa.me/${w}" target="_blank" rel="noopener">${icon("i-wa")} WhatsApp</a>`:""}
       </div>
       <div class="reject-box" hidden><div class="fld"><label>Reason (the business will see this)</label><input data-note maxlength="200" placeholder="e.g. Please add a working phone number"></div><div class="adm-acts"><button class="btn btn-navy" type="button" data-act="reject-go">Confirm</button><button class="btn btn-ghost" type="button" data-act="reject-cancel">Cancel</button></div></div>
@@ -1828,6 +1829,7 @@ async function renderAdmin(){
     if(act==="reject"||act==="suspend"){row.querySelector(".reject-box").hidden=false;row.querySelector(".reject-box").dataset.mode=act;row.querySelector("[data-note]").focus();return;}
     if(act==="reject-cancel"){row.querySelector(".reject-box").hidden=true;return;}
     if(act==="cert"){downloadCertificate(x,a);return;}
+    if(act==="wpack"){downloadWelcomePack(x,(x.owner&&x.owner.full_name)||"",a);return;}
     const p={p_business:id};
     if(act==="approve")p.p_status="approved";
     if(act==="reject-go"){p.p_status=row.querySelector(".reject-box").dataset.mode==="suspend"?"suspended":"rejected";p.p_note=row.querySelector("[data-note]").value.trim()||null;}
@@ -1892,6 +1894,41 @@ async function downloadCertificate(b,btn){
     pdf.addImage(c.toDataURL("image/jpeg",0.92),"JPEG",0,0,841.89,595.28);
     pdf.save("ServiceLink-Certificate-"+slugify(b.name)+".pdf");
     toast("Certificate downloaded");
+  }catch(err){toast(friendlyErr(err));}
+  finally{busyBtn(btn,false);}
+}
+
+
+/* ---------- personalised provider welcome pack ---------- */
+const WPACK="welcome-pack.jpg",WP_W=1754,WP_H=1241,WP_NAVY="#0B295B",WP_GOLD="#D4A52B";
+async function downloadWelcomePack(b,owner,btn){
+  busyBtn(btn,true,"Preparing pack…");
+  try{
+    const [sheet,cert]=await Promise.all([
+      loadImg(WPACK).catch(()=>{throw new Error("The welcome pack design could not be loaded. Check welcome-pack.jpg is uploaded to GitHub.");}),
+      makeCertificate(b)]);
+    try{await Promise.all(["600 30px Poppins","700 30px Poppins","500 22px Poppins"].map(f=>document.fonts.load(f)));}catch(e){}
+    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
+    const pdf=new window.jspdf.jsPDF({orientation:"landscape",unit:"pt",format:"a4"});
+    const appr=new Date(b.approved_at||Date.now()),until=new Date(appr);until.setFullYear(until.getFullYear()+1);
+    const d=t=>t.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+    for(let i=0;i<6;i++){
+      const c=document.createElement("canvas");c.width=WP_W;c.height=WP_H;const x=c.getContext("2d");
+      x.drawImage(sheet,0,i*WP_H,WP_W,WP_H,0,0,WP_W,WP_H);x.textBaseline="alphabetic";x.textAlign="left";
+      if(i===0){x.fillStyle=WP_NAVY;fitFont(x,b.name,620,36,'700 {s}px Poppins, Figtree, Arial, sans-serif');x.fillText(b.name,108,1030);}
+      if(i===2){
+        x.fillStyle="#FFFFFF";
+        const line=(t,y)=>{fitFont(x,t,850,30,'600 {s}px Poppins, Figtree, Arial, sans-serif');x.fillText(t,167,y);};
+        line(owner||b.name,503);line(b.name,599);line(b.category||"",695);
+        x.fillStyle=WP_GOLD;fitFont(x,certNo(b),450,32,'700 {s}px Poppins, Figtree, Arial, sans-serif');x.fillText(certNo(b),167,801);
+        x.fillStyle="#FFFFFF";x.font='500 21px Poppins, Figtree, Arial, sans-serif';x.fillText(d(appr),692,801);x.fillText(d(until),879,801);
+      }
+      if(i===3){x.drawImage(cert,36,35,2268,1583,124,330,982,687);}
+      pdf.addImage(c.toDataURL("image/jpeg",0.86),"JPEG",0,0,841.89,595.28);
+      if(i<5)pdf.addPage();
+    }
+    pdf.save("ServiceLink-Welcome-Pack-"+slugify(b.name)+".pdf");
+    toast("Welcome pack downloaded");
   }catch(err){toast(friendlyErr(err));}
   finally{busyBtn(btn,false);}
 }
