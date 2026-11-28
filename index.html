@@ -1777,6 +1777,7 @@ async function renderDashboard(){
     </form>
   </div>`;
   loadBizBookings(b);loadClosures(b);loadPromote(b);loadGallery(b);loadBizReviews(b);loadBizOrders(b);loadBizProducts(b);loadCommission(b);loadValue(b);
+  recheckPending().then(p=>{if(p)sb.from("businesses").select("*").eq("id",b.id).maybeSingle().then(({data})=>{if(data){myBiz=data;renderDashboard();}});});
   const cb=box.querySelector("[data-cert]");if(cb)cb.onclick=()=>downloadCertificate(myBiz,cb);
   const wb=box.querySelector("[data-wpack]");if(wb)wb.onclick=()=>downloadWelcomePack(myBiz,(me&&me.full_name)||"",wb);
   const lf=$("#logoFile");if(lf)lf.onchange=async()=>{const f=lf.files[0];if(!f)return;if(!/^image\//.test(f.type)){toast("Please choose a picture file.");return;}
@@ -2140,8 +2141,8 @@ function loadLenco(mode){if(window.LencoPay&&lencoMode===mode)return Promise.res
   lencoJs=new Promise((res,rej)=>{const sc=document.createElement("script");sc.src=mode==="live"?"https://pay.lenco.co/js/v1/inline.js":"https://pay.sandbox.lenco.co/js/v1/inline.js";
     sc.onload=()=>res();sc.onerror=()=>{lencoJs=null;rej(new Error("Could not open the payment window. Check your internet connection and try again."));};document.head.appendChild(sc);});
   return lencoJs;}
-async function verifyOnline(ref){
-  for(let i=0;i<10;i++){
+async function verifyOnline(ref,tries){
+  for(let i=0;i<(tries||10);i++){
     try{const {data}=await sb.functions.invoke("lenco-pay",{body:{reference:ref}});const j=data||{};
       if(["paid","failed","mismatch"].includes(j.status))return j;}catch(e){}
     await new Promise(r=>setTimeout(r,i<3?2000:4000));}
@@ -2161,11 +2162,20 @@ async function payOnline(purpose,opts){
         label:opts.label||"ServiceLink Zambia",bearer:"merchant",channels:SETTINGS&&SETTINGS.lenco_cards?["mobile-money","card"]:["mobile-money"],
         customer:{firstName:nm[0]||"",lastName:nm.slice(1).join(" "),phone:String(d.phone||"").replace(/[^\d+]/g,"")},
         onSuccess:r=>finish(r&&r.reference),onConfirmationPending:()=>finish(d.reference),
-        onClose:()=>{if(!done){done=true;resolve({status:"closed"});}}});}
+        onClose:()=>{if(done)return;done=true;toast("Checking your payment…");
+          verifyOnline(d.reference,3).then(r=>resolve(["paid","failed","mismatch"].includes(r.status)?r:{status:"closed"}));}});}
     catch(e){done=true;resolve({status:"error",message:"Could not open the payment window. Please try again."});}
   });
 }
-function onlineMsg(r){return {closed:"The payment window was closed and nothing was charged. Tap the pay button to try again.",
+/* re-check payments that were started but not confirmed (e.g. the window closed early) */
+let recheckAt=0;
+async function recheckPending(){
+  if(!sb||!session||Date.now()-recheckAt<45000)return false;recheckAt=Date.now();
+  try{const since=new Date(Date.now()-2*864e5).toISOString();
+    const {data}=await sb.from("online_payments").select("reference").eq("user_id",session.user.id).eq("status","pending").gte("created_at",since).order("created_at",{ascending:false}).limit(8);
+    let paid=false;for(const p of data||[]){try{const r=await sb.functions.invoke("lenco-pay",{body:{reference:p.reference}});if(r.data&&r.data.status==="paid")paid=true;}catch(e){}}
+    if(paid)toast("A payment has been confirmed. Thank you!");return paid;}catch(e){return false;}}
+function onlineMsg(r){return {closed:"The payment window was closed. If you already approved the payment on your phone, it will show as paid in My account within a few minutes. Otherwise nothing was charged: tap the pay button to try again.",
   failed:"The payment did not go through"+(r.message?": "+r.message:"")+". Please try again.",
   mismatch:r.message||"The amount paid does not match. ServiceLink will check it and contact you.",
   pending:"Your payment is still being confirmed. This can take a few minutes. We will update your account and email you as soon as it is confirmed.",
@@ -2525,6 +2535,8 @@ async function loadMyOrders(){
   const {data,error}=await sb.from("orders").select("*, product:products(file_path,image_url), seller:businesses(name,slug,phone,whatsapp)").eq("customer_id",session.user.id).order("created_at",{ascending:false});
   if(error){el.innerHTML=`<p class="form-msg">${esc(friendlyErr(error))}</p>`;return;}
   const list=data||[];
+  if(SETTINGS===null)await getSettings();
+  if(list.some(o=>o.status==="awaiting")){recheckPending().then(p=>{if(p)loadMyOrders();});}
   if(!list.length){el.innerHTML=`<p class="hint">No orders yet. Visit the <a href="#shop">shop</a>.</p>`;return;}
   const urls={};
   await Promise.all(list.map(async o=>{const path=o.file_path||(!o.custom&&o.product&&o.product.file_path);
